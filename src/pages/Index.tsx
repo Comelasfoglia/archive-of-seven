@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useArchive, Fragment } from '../hooks/useArchive';
 import { IntroScreen } from '../components/IntroScreen';
+import { CharacterSelectScreen, CharacterOption, PLACEHOLDER_CHARACTERS } from '../components/CharacterSelectScreen';
 import { MapScreen } from '../components/MapScreen';
 import { FragmentModal } from '../components/FragmentModal';
 import { EndingScreen } from '../components/EndingScreen';
 
-type Screen = 'intro' | 'map';
+type Screen = 'intro' | 'character-select' | 'map';
 
 const Index = () => {
   const {
