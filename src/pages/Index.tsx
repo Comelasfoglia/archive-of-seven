@@ -65,8 +65,8 @@ const Index = () => {
           isUnlocked={isUnlocked}
           isOpened={isOpened}
           onSelect={handleSelectFragment}
-          playerName={data.meta.player.name}
-          playerAxis={data.meta.player.axis}
+          playerName={selectedCharacter?.name ?? data.meta.player.name}
+          playerAxis={selectedCharacter?.assessment_archetype ?? data.meta.player.axis}
           openedCount={openedCount}
           totalCount={totalCount}
           allMandatoryOpened={allMandatoryOpened}
