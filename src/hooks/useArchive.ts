@@ -24,6 +24,7 @@ export interface Fragment {
   position: { x: number; y: number };
   content: FragmentContent;
   reveals: string;
+  challenges?: FragmentChallenge[];
 }
 
 export interface ArchiveData {

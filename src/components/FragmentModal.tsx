@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Fragment } from '../hooks/useArchive';
+import { Fragment, FragmentChallenge } from '../hooks/useArchive';
 import { FragmentIcon, RuneSymbol } from './RuneIcons';
 
 interface FragmentModalProps {
   fragment: Fragment;
+  playerName: string | null;
   onClose: () => void;
 }
 
@@ -15,13 +16,39 @@ const typeColor: Record<string, string> = {
   diario: 'var(--diary-red)',
 };
 
-export function FragmentModal({ fragment, onClose }: FragmentModalProps) {
+function ChallengeRuneSymbol({ className = '' }: { className?: string }) {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" className={className} style={{ color: 'var(--crystal-gold)' }}>
+      <rect x="1" y="1" width="10" height="10" stroke="currentColor" strokeWidth="1" fill="none" transform="rotate(45 6 6)" />
+      <circle cx="6" cy="6" r="1.5" fill="currentColor" />
+    </svg>
+  );
+}
+
+export function FragmentModal({ fragment, playerName, onClose }: FragmentModalProps) {
   const [showReveals, setShowReveals] = useState(false);
+  const [visibleChallengeCount, setVisibleChallengeCount] = useState(0);
+
+  // Compute active challenges
+  const activeChallenges: FragmentChallenge[] = playerName && fragment.challenges
+    ? fragment.challenges.filter(c => c.characters.includes(playerName))
+    : [];
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowReveals(true), 5000);
-    return () => clearTimeout(timer);
+    const revealTimer = setTimeout(() => setShowReveals(true), 5000);
+    return () => clearTimeout(revealTimer);
   }, []);
+
+  // Show challenges one at a time, 7 seconds after reveals appear
+  useEffect(() => {
+    if (!showReveals || activeChallenges.length === 0) return;
+
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    activeChallenges.forEach((_, i) => {
+      timers.push(setTimeout(() => setVisibleChallengeCount(i + 1), 7000 + i * 3000));
+    });
+    return () => timers.forEach(clearTimeout);
+  }, [showReveals, activeChallenges.length]);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); },
@@ -111,7 +138,7 @@ export function FragmentModal({ fragment, onClose }: FragmentModalProps) {
           </div>
         )}
 
-        {/* Reveals — delayed */}
+        {/* Reveals — delayed 5s */}
         {showReveals && fragment.reveals && (
           <div className="animate-reveals mt-6 flex items-start gap-2">
             <RuneSymbol className="mt-1 flex-shrink-0" />
@@ -120,6 +147,24 @@ export function FragmentModal({ fragment, onClose }: FragmentModalProps) {
             </p>
           </div>
         )}
+
+        {/* Challenge notes — delayed 7s after reveals, one at a time */}
+        {activeChallenges.slice(0, visibleChallengeCount).map((challenge, i) => (
+          <div
+            key={i}
+            className="mt-4 flex items-start gap-2"
+            style={{
+              animation: 'challenge-fade-in 1.2s ease-out forwards',
+              borderLeft: challenge.exclusive ? '3px solid var(--crystal-gold)' : '1px solid rgba(255, 213, 79, 0.3)',
+              paddingLeft: '12px',
+            }}
+          >
+            <ChallengeRuneSymbol className="mt-1 flex-shrink-0" />
+            <p className="font-crimson italic text-[0.9rem] leading-relaxed" style={{ color: 'var(--crystal-gold)' }}>
+              {challenge.reveal}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
