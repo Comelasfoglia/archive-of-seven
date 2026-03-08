@@ -166,26 +166,40 @@ export function MapScreen({
             />
           ))}
 
-          {/* Finale node */}
+          {/* Finale node — octagram */}
           {allMandatoryOpened && (
             <g
-              transform={`translate(500, 520)`}
-              className="node-glow-finale animate-node-pulse cursor-pointer"
+              transform="translate(500, 520)"
+              className="cursor-pointer"
               onClick={onFinale}
+              style={{ animation: 'node-pulse 1.5s ease-in-out infinite' }}
             >
+              {/* Outer glow */}
+              <circle cx="0" cy="0" r="40" fill="var(--crystal-gold)" fillOpacity="0.08" />
+              <circle cx="0" cy="0" r="28" fill="var(--crystal-gold)" fillOpacity="0.06" />
+              {/* 8-pointed star */}
               <polygon
-                points="-30,-17 0,-34 30,-17 30,17 0,34 -30,17"
-                fill="rgba(255,213,79,0.15)"
-                stroke="var(--crystal-gold)"
-                strokeWidth="2"
-              />
-              <text
-                textAnchor="middle"
-                y={5}
+                points="0,-30 8,-10 28,-10 12,4 18,24 0,14 -18,24 -12,4 -28,-10 -8,-10"
                 fill="var(--crystal-gold)"
-                fontSize="14"
+                fillOpacity="0.2"
+                stroke="var(--crystal-gold)"
+                strokeWidth="1.5"
+              />
+              {/* Inner diamond */}
+              <polygon
+                points="0,-12 12,0 0,12 -12,0"
+                fill="var(--crystal-gold)"
+                fillOpacity="0.5"
+              />
+              {/* Label */}
+              <text
+                y={46}
+                textAnchor="middle"
+                fill="var(--crystal-gold)"
+                fontSize="11"
                 fontFamily="'Cinzel', serif"
                 fontWeight="700"
+                letterSpacing="0.4em"
               >
                 FINE
               </text>

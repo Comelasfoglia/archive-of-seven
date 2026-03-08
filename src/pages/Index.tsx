@@ -85,7 +85,15 @@ const Index = () => {
       {showEnding && (
         <EndingScreen
           ending={ending}
-          onClose={() => setShowEnding(false)}
+          playerName={selectedCharacter?.name ?? 'Archivista'}
+          onRestart={() => {
+            setShowEnding(false);
+            setSelectedCharacter(null);
+            setScreen('character-select');
+          }}
+          onReturn={() => {
+            setShowEnding(false);
+          }}
         />
       )}
     </>
