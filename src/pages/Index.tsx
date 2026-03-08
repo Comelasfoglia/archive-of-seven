@@ -17,6 +17,7 @@ const Index = () => {
   } = useArchive();
 
   const [screen, setScreen] = useState<Screen>('intro');
+  const [selectedCharacter, setSelectedCharacter] = useState<CharacterOption | null>(null);
   const [selectedFragment, setSelectedFragment] = useState<Fragment | null>(null);
   const [showEnding, setShowEnding] = useState(false);
 
