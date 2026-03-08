@@ -46,7 +46,8 @@ export function FragmentModal({ fragment, onClose }: FragmentModalProps) {
 
       {/* Panel */}
       <div
-        className="relative w-full max-w-[680px] max-h-[85vh] overflow-y-auto animate-panel-enter panel-stone clip-stone p-6 md:p-10"
+        className="relative w-full max-w-[680px] max-h-[85vh] overflow-y-auto panel-stone clip-stone p-4 sm:p-6 md:p-10"
+        style={{ animation: 'panel-enter-flex 0.6s ease-out forwards' }}
       >
         {/* Close button */}
         <button
