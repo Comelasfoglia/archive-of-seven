@@ -1,5 +1,10 @@
 import { useMemo } from 'react';
 
+interface CrystalSVGProps {
+  size?: number;
+  color?: string;
+}
+
 const particles = Array.from({ length: 12 }, (_, i) => ({
   id: i,
   px: `${(Math.random() - 0.5) * 80}px`,
@@ -8,12 +13,15 @@ const particles = Array.from({ length: 12 }, (_, i) => ({
   delay: `${Math.random() * 3}s`,
 }));
 
-export function CrystalSVG({ size = 160 }: { size?: number }) {
+export function CrystalSVG({ size = 160, color }: CrystalSVGProps) {
   const memoParticles = useMemo(() => particles, []);
+  const mainColor = color || 'var(--crystal-blue)';
+  const secondaryColor = color || 'var(--crystal-violet)';
+  const gradId = useMemo(() => `crystalGrad-${Math.random().toString(36).slice(2, 8)}`, []);
+  const filterId = useMemo(() => `crystalGlow-${Math.random().toString(36).slice(2, 8)}`, []);
 
   return (
     <div className="relative inline-flex items-center justify-center" style={{ width: size, height: size }}>
-      {/* Particles */}
       {memoParticles.map(p => (
         <div
           key={p.id}
@@ -31,12 +39,11 @@ export function CrystalSVG({ size = 160 }: { size?: number }) {
         >
           <div
             className="w-full h-full"
-            style={{ background: 'var(--crystal-blue)', clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}
+            style={{ background: mainColor, clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}
           />
         </div>
       ))}
 
-      {/* Crystal */}
       <svg
         viewBox="0 0 100 140"
         width={size * 0.6}
@@ -44,12 +51,12 @@ export function CrystalSVG({ size = 160 }: { size?: number }) {
         className="animate-crystal-pulse"
       >
         <defs>
-          <linearGradient id="crystalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="var(--crystal-violet)" stopOpacity="0.9" />
-            <stop offset="50%" stopColor="var(--crystal-blue)" stopOpacity="0.7" />
-            <stop offset="100%" stopColor="var(--crystal-violet)" stopOpacity="0.9" />
+          <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor={secondaryColor} stopOpacity="0.9" />
+            <stop offset="50%" stopColor={mainColor} stopOpacity="0.7" />
+            <stop offset="100%" stopColor={secondaryColor} stopOpacity="0.9" />
           </linearGradient>
-          <filter id="crystalGlow">
+          <filter id={filterId}>
             <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
@@ -57,33 +64,30 @@ export function CrystalSVG({ size = 160 }: { size?: number }) {
             </feMerge>
           </filter>
         </defs>
-        {/* Main crystal body */}
         <polygon
           points="50,5 85,40 75,100 50,135 25,100 15,40"
-          fill="url(#crystalGrad)"
-          stroke="var(--crystal-blue)"
+          fill={`url(#${gradId})`}
+          stroke={mainColor}
           strokeWidth="1"
-          filter="url(#crystalGlow)"
+          filter={`url(#${filterId})`}
         />
-        {/* Inner facets */}
         <polygon
           points="50,5 65,35 50,70 35,35"
-          fill="var(--crystal-blue)"
+          fill={mainColor}
           fillOpacity="0.15"
-          stroke="var(--crystal-blue)"
+          stroke={mainColor}
           strokeWidth="0.5"
           strokeOpacity="0.4"
         />
         <polygon
           points="50,70 75,100 50,135 25,100"
-          fill="var(--crystal-violet)"
+          fill={secondaryColor}
           fillOpacity="0.1"
-          stroke="var(--crystal-violet)"
+          stroke={secondaryColor}
           strokeWidth="0.5"
           strokeOpacity="0.3"
         />
-        {/* Center line */}
-        <line x1="50" y1="5" x2="50" y2="135" stroke="var(--crystal-blue)" strokeWidth="0.3" strokeOpacity="0.5" />
+        <line x1="50" y1="5" x2="50" y2="135" stroke={mainColor} strokeWidth="0.3" strokeOpacity="0.5" />
       </svg>
     </div>
   );
