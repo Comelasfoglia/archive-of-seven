@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useArchive, Fragment } from '../hooks/useArchive';
 import { IntroScreen } from '../components/IntroScreen';
+import { CharacterSelectScreen, CharacterOption, PLACEHOLDER_CHARACTERS } from '../components/CharacterSelectScreen';
 import { MapScreen } from '../components/MapScreen';
 import { FragmentModal } from '../components/FragmentModal';
 import { EndingScreen } from '../components/EndingScreen';
 
-type Screen = 'intro' | 'map';
+type Screen = 'intro' | 'character-select' | 'map';
 
 const Index = () => {
   const {
@@ -16,6 +17,7 @@ const Index = () => {
   } = useArchive();
 
   const [screen, setScreen] = useState<Screen>('intro');
+  const [selectedCharacter, setSelectedCharacter] = useState<CharacterOption | null>(null);
   const [selectedFragment, setSelectedFragment] = useState<Fragment | null>(null);
   const [showEnding, setShowEnding] = useState(false);
 
@@ -43,7 +45,17 @@ const Index = () => {
           title={data.meta.title}
           subtitle={data.meta.subtitle}
           introText={data.meta.intro_text}
-          onEnter={() => setScreen('map')}
+          onEnter={() => setScreen('character-select')}
+        />
+      )}
+
+      {screen === 'character-select' && (
+        <CharacterSelectScreen
+          characters={PLACEHOLDER_CHARACTERS}
+          onConfirm={(char) => {
+            setSelectedCharacter(char);
+            setScreen('map');
+          }}
         />
       )}
 
@@ -53,8 +65,8 @@ const Index = () => {
           isUnlocked={isUnlocked}
           isOpened={isOpened}
           onSelect={handleSelectFragment}
-          playerName={data.meta.player.name}
-          playerAxis={data.meta.player.axis}
+          playerName={selectedCharacter?.name ?? data.meta.player.name}
+          playerAxis={selectedCharacter?.assessment_archetype ?? data.meta.player.axis}
           openedCount={openedCount}
           totalCount={totalCount}
           allMandatoryOpened={allMandatoryOpened}
