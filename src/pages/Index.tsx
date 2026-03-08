@@ -77,6 +77,7 @@ const Index = () => {
       {selectedFragment && (
         <FragmentModal
           fragment={selectedFragment}
+          playerName={selectedCharacter?.name ?? null}
           onClose={() => setSelectedFragment(null)}
         />
       )}

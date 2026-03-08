@@ -7,6 +7,13 @@ export interface FragmentContent {
   notes: string;
 }
 
+export interface FragmentChallenge {
+  axis: string;
+  characters: string[];
+  reveal: string;
+  exclusive?: boolean;
+}
+
 export interface Fragment {
   id: string;
   type: 'documento' | 'audio' | 'oggetto' | 'testimonianza' | 'diario';
@@ -17,6 +24,7 @@ export interface Fragment {
   position: { x: number; y: number };
   content: FragmentContent;
   reveals: string;
+  challenges?: FragmentChallenge[];
 }
 
 export interface ArchiveData {
