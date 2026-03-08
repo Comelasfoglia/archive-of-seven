@@ -221,3 +221,10 @@ body::after {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+
+/* Crystal pulse inward — for ending screen */
+@keyframes crystal-pulse-inward {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.92); }
+}
+}
