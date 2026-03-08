@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "title": "Archivio — Anno 6080",
+    "subtitle": "Qualcuno ha lasciato qualcosa.",
+    "archivist": "Sette",
+    "intro_text": "Questo archivio è stato trovato sotto le rovine della Cattedrale del Settimo Sigillo. I frammenti al suo interno sono stati catalogati ma non ordinati. Non sappiamo chi fosse Sette. Sappiamo solo che voleva essere ricordata.",
+    "player": {
+      "name": "Archivista",
+      "axis": "Memoria"
+    }
+  },
+  "fragments": {
+    "mandatory": [
+      {
+        "id": "F1",
+        "type": "documento",
+        "title": "La Prima Luce",
+        "locked": false,
+        "unlocksFrom": null,
+        "icon": "scroll",
+        "position": { "x": 25, "y": 30 },
+        "content": {
+          "text": "Ho visto la luce cristallina per la prima volta quando avevo dodici anni. Non era il sole — era qualcosa sotto il ghiaccio, qualcosa che pulsava come un cuore separato dal corpo. I Custodi dicevano che era pericolosa. Io sapevo già che era bella.\n\nQuella notte ho rubato una lanterna e sono tornata da sola. Il cristallo cantava. Una nota lunga, impossibile, che sentivo non nelle orecchie ma nello sterno. Ho poggiato la mano sulla superficie e ho visto — per un istante — tutti i luoghi dove sarei stata.\n\nNon ho mai raccontato a nessuno cosa ho visto. Fino ad ora.",
+          "date": "Anno 6043",
+          "author": "Sette",
+          "notes": "Il frammento era avvolto in tessuto isolante termico. La calligrafia è irregolare, probabilmente scritta di notte."
+        },
+        "reveals": "Il cristallo sotto il ghiaccio — qualcuno lo ha cercato prima di lei."
+      },
+      {
+        "id": "F2",
+        "type": "audio",
+        "title": "Trasmissione Interrotta",
+        "locked": true,
+        "unlocksFrom": "F1",
+        "icon": "wave",
+        "position": { "x": 45, "y": 18 },
+        "content": {
+          "text": "[Registrazione audio — qualità degradata, fruscio costante]\n\n\"...non rispondono dal Settore Nove. Ripeto: il Settore Nove è silenzioso da tre cicli. Sette, se ricevi questo, devi sapere che il Consiglio ha votato. Hanno deciso di sigillare l'accesso inferiore.\n\nSo cosa significa per te. So cosa c'è laggiù.\n\nNon tornare. Qualunque cosa tu abbia trovato... lasciala dove l'hai trovata. Non tutte le luci sono fatte per essere seguite.\"\n\n[Fine trasmissione — timestamp corrotto]",
+          "date": "Anno 6051",
+          "author": "Voce non identificata",
+          "notes": "La registrazione è stata trovata su un dispositivo di comunicazione danneggiato. Il segnale porta tracce di crittografia militare di terzo livello."
+        },
+        "reveals": "Chi ha mandato il messaggio conosceva Sette — e sapeva cosa cercava."
+      },
+      {
+        "id": "F3",
+        "type": "oggetto",
+        "title": "Frammento di Cristallo Nero",
+        "locked": true,
+        "unlocksFrom": "F2",
+        "icon": "crystal",
+        "position": { "x": 65, "y": 35 },
+        "content": {
+          "text": "Un frammento di cristallo, lungo circa 15 centimetri, di colore nero con venature violette che pulsano debolmente quando esposto a calore corporeo. La superficie è perfettamente liscia su cinque facce; la sesta mostra segni di frattura recente.\n\nAnalisi spettrale: composizione sconosciuta. Non corrisponde a nessun minerale catalogato negli archivi della Federazione. Emette una frequenza subsonica costante a 7.83 Hz — la stessa frequenza della risonanza di Schumann terrestre, un pianeta abbandonato da millenni.\n\nNota a margine, scritta a mano: \"Lo sento anche quando non lo tocco. Soprattutto di notte.\"",
+          "date": "Anno 6055 — Catalogazione",
+          "author": "Archivio Federale, Sezione Anomalie",
+          "notes": "Il cristallo è stato trovato nelle cose personali di Sette dopo la sua scomparsa. Era nascosto in un contenitore schermato artigianale."
+        },
+        "reveals": "Il cristallo nero è un pezzo di qualcosa di più grande — qualcosa che è stato rotto di proposito."
+      },
+      {
+        "id": "F4",
+        "type": "testimonianza",
+        "title": "La Custode del Livello Sei",
+        "locked": true,
+        "unlocksFrom": "F3",
+        "icon": "eye",
+        "position": { "x": 35, "y": 55 },
+        "content": {
+          "text": "\"Sette veniva ogni settimana. Sempre lo stesso giorno, sempre la stessa ora. Chiedeva accesso ai registri pre-Collasso — quelli che nessuno legge più. Stava cercando qualcosa di specifico, ma non mi ha mai detto cosa.\n\nUna volta l'ho trovata che piangeva davanti a uno schermo vuoto. Le ho chiesto se stava bene. Mi ha guardata con quegli occhi — sai, quegli occhi che aveva, come se vedesse attraverso le pareti — e mi ha detto: 'Ho trovato dove finisce.'\n\nNon ho chiesto cosa. Non volevo saperlo.\n\nL'ultima volta che è venuta, ha lasciato un pacchetto sulla mia scrivania. Dentro c'era un frammento di cristallo e un biglietto: 'Quando qualcuno chiederà, dì che mi ricordavi.' Non ho capito. Non capisco ancora.\"",
+          "date": "Anno 6072 — Testimonianza raccolta post-scomparsa",
+          "author": "Maren, Custode Archivi Livello 6",
+          "notes": "Maren è stata intervistata tre volte. Questa è l'unica trascrizione che ha autorizzato alla conservazione."
+        },
+        "reveals": "Sette sapeva che sarebbe scomparsa. Si stava preparando."
+      },
+      {
+        "id": "F5",
+        "type": "diario",
+        "title": "L'Ultima Pagina",
+        "locked": true,
+        "unlocksFrom": "F4",
+        "icon": "book",
+        "position": { "x": 55, "y": 70 },
+        "content": {
+          "text": "Non ho paura.\n\nQuesto è quello che voglio scrivere, ma la mano trema e l'inchiostro si sparge. Quindi dirò la verità: ho paura. Ho paura di quello che ho trovato, ho paura di quello che significa, ho paura che nessuno capirà.\n\nIl cristallo grande — quello sotto la Cattedrale — non è un minerale. È un archivio. Contiene tutto. Ogni voce, ogni pensiero, ogni momento di ogni essere che ha mai toccato la sua superficie. Millenni di memoria compressa in una struttura che non dovrebbe esistere.\n\nE io l'ho ascoltato. Per anni l'ho ascoltato.\n\nOra contiene anche me. I miei ricordi, le mie paure, il suono della mia voce. Sono diventata parte dell'archivio.\n\nQuando troveranno queste pagine, non cercheranno me. Cercheranno il cristallo. Ma il cristallo sono io, ormai.\n\nSette. L'ultima di sette custodi. La prima a capire.",
+          "date": "Anno 6077",
+          "author": "Sette",
+          "notes": "Ultima pagina del diario personale. Le pagine precedenti sono state rimosse — probabilmente dalla stessa Sette."
+        },
+        "reveals": "Il cristallo sotto la Cattedrale è un archivio vivente. Sette non è scomparsa — si è unita ad esso."
+      },
+      {
+        "id": "F6",
+        "type": "documento",
+        "title": "Rapporto Finale — Sigillato",
+        "locked": true,
+        "unlocksFrom": "F5",
+        "icon": "seal",
+        "position": { "x": 75, "y": 50 },
+        "content": {
+          "text": "CLASSIFICAZIONE: SIGMA-7 — SOLO LETTURA AUTORIZZATA\n\nOggetto: Evento di Scomparsa — Soggetto designato \"Sette\"\n\nIn data Anno 6078, ciclo 14, il soggetto noto come Sette è stato dichiarato disperso. L'ultima posizione confermata corrisponde alla camera inferiore della Cattedrale del Settimo Sigillo, Livello -12.\n\nLa camera è stata trovata vuota. Il cristallo centrale — precedentemente documentato come struttura geologica anomala di circa 4 metri di altezza — risulta modificato. La superficie presenta nuove formazioni: patterns che i tecnici descrivono come 'simili a impronte digitali su scala molecolare.'\n\nRaccomandazione del team scientifico: sigillare la camera e classificare il sito come Zona di Esclusione Permanente.\n\nRaccomandazione personale dell'ufficiale incaricato (nota a margine, non inclusa nel rapporto ufficiale): 'Non sigillatela. Ascoltatela.'\n\nSTATUS: La camera è stata sigillata. La raccomandazione personale è stata ignorata.",
+          "date": "Anno 6078",
+          "author": "Comando Federale — Divisione Anomalie",
+          "notes": "Questo documento non avrebbe dovuto essere in questo archivio. Qualcuno lo ha inserito dopo la sigillatura ufficiale."
+        },
+        "reveals": "Qualcuno all'interno del Comando credeva a Sette. E ha fatto in modo che tu trovassi questo."
+      }
+    ],
+    "optional": [
+      {
+        "id": "O1",
+        "type": "documento",
+        "title": "Mappa delle Risonanze",
+        "locked": true,
+        "unlocksFrom": "F1",
+        "icon": "map",
+        "position": { "x": 12, "y": 15 },
+        "content": {
+          "text": "Una mappa disegnata a mano su carta sintetica resistente. Mostra una rete di punti luminosi sotto la superficie del continente — ciascuno collegato da linee tratteggiate che convergono verso un punto centrale etichettato semplicemente come 'Cuore.'\n\nAlcuni punti sono cerchiati in rosso con annotazioni:\n- 'Attivo — risponde'\n- 'Silenzioso dal ciclo 3'\n- 'Nuovo? Non era qui prima'\n\nIn basso, una nota: 'La rete cresce. Non siamo noi a farla crescere.'",
+          "date": "Anno 6050 circa",
+          "author": "Sette",
+          "notes": "La mappa mostra almeno 40 punti di risonanza. Solo 7 sono stati mai documentati ufficialmente."
+        },
+        "reveals": "I cristalli non sono isolati. Sono una rete."
+      },
+      {
+        "id": "O2",
+        "type": "audio",
+        "title": "Canzone senza Titolo",
+        "locked": true,
+        "unlocksFrom": "F2",
+        "icon": "wave",
+        "position": { "x": 60, "y": 10 },
+        "content": {
+          "text": "[Registrazione audio — alta qualità, ambiente silenzioso]\n\nUna voce femminile canta senza parole. La melodia è semplice — cinque note che si ripetono con variazioni minime. Non è una canzone conosciuta.\n\nDopo circa due minuti, una seconda voce si unisce. Non è umana. È un suono cristallino, armonico, che segue la melodia con un leggero ritardo — come un'eco che impara.\n\nLe due voci si intrecciano per altri tre minuti. Poi silenzio.\n\nUltimi tre secondi: un sussurro. \"Ci sei.\"",
+          "date": "Non datata",
+          "author": "Sette (e altro)",
+          "notes": "L'analisi frequenziale della seconda voce corrisponde esattamente alla frequenza emessa dal cristallo nero catalogato come F3."
+        },
+        "reveals": "Il cristallo rispondeva a Sette. Non era un oggetto — era un interlocutore."
+      },
+      {
+        "id": "O3",
+        "type": "oggetto",
+        "title": "Chiave Spezzata",
+        "locked": true,
+        "unlocksFrom": "F3",
+        "icon": "key",
+        "position": { "x": 85, "y": 22 },
+        "content": {
+          "text": "Una chiave metallica spezzata a metà. La parte superiore ha la forma di un esagono — stessa geometria dei sigilli della Cattedrale. Il metallo è freddo al tatto, anche in ambienti caldi.\n\nInciso sulla superficie: un numero. '7.'\n\nLa metà inferiore non è mai stata trovata.",
+          "date": "Trovata nell'Anno 6078",
+          "author": "Sconosciuto",
+          "notes": "La chiave era dentro un muro della Cattedrale — nascosta durante la costruzione originale, oltre 200 anni prima che Sette nascesse."
+        },
+        "reveals": "Qualcuno ha preparato il cammino di Sette secoli prima della sua nascita."
+      },
+      {
+        "id": "O4",
+        "type": "testimonianza",
+        "title": "Il Bambino del Livello Due",
+        "locked": true,
+        "unlocksFrom": "F2",
+        "icon": "eye",
+        "position": { "x": 18, "y": 48 },
+        "content": {
+          "text": "\"Una volta ho visto una signora che parlava con il muro. Stava nel corridoio lungo, quello dove non ci lasciano andare. Aveva le mani appoggiate sulla pietra e sussurrava.\n\nLe ho chiesto cosa faceva. Mi ha detto: 'Sto raccontando una storia a qualcuno che non è ancora nato.'\n\nMi ha sorriso. Aveva gli occhi tristi ma il sorriso no. Il sorriso era... come quando sai un segreto bello.\n\nPoi mi ha detto di non raccontarlo a nessuno. Ma lei non c'è più, quindi penso che sia okay.\"",
+          "date": "Anno 6075 — Testimonianza",
+          "author": "Anonimo, circa 8 anni al momento dei fatti",
+          "notes": "Il corridoio descritto corrisponde a un passaggio sopra la camera del cristallo centrale."
+        },
+        "reveals": "Sette non parlava al muro. Parlava al cristallo attraverso la pietra. Stava registrando."
+      },
+      {
+        "id": "O5",
+        "type": "diario",
+        "title": "Lettera Mai Spedita",
+        "locked": true,
+        "unlocksFrom": "F4",
+        "icon": "book",
+        "position": { "x": 42, "y": 82 },
+        "content": {
+          "text": "A chi troverà questo dopo di me,\n\nnon sono una martire e non sono una santa. Sono una donna che ha trovato qualcosa di enorme e non è riuscita a lasciarlo stare.\n\nIl cristallo non è magia. Non è tecnologia. È qualcosa che non abbiamo ancora parole per descrivere — qualcosa che esiste da prima che esistessimo noi, e che esisterà dopo.\n\nQuello che vi chiedo è semplice: non distruggetelo. Non sigillatelo. Non ignoratelo.\n\nAscoltatelo.\n\nDentro c'è tutto quello che siamo stati. E forse — se siete abbastanza coraggiosi — quello che potremmo diventare.\n\nCon tutto il coraggio che mi resta,\nSette",
+          "date": "Non datata — probabilmente Anno 6077",
+          "author": "Sette",
+          "notes": "La lettera era piegata all'interno del diario, tra le ultime pagine. Non ha destinatario specifico."
+        },
+        "reveals": "Questa lettera era per te. Per chiunque avesse trovato l'archivio."
+      },
+      {
+        "id": "O6",
+        "type": "documento",
+        "title": "Protocollo Eco-7",
+        "locked": true,
+        "unlocksFrom": "F5",
+        "icon": "scroll",
+        "position": { "x": 88, "y": 65 },
+        "content": {
+          "text": "PROTOCOLLO ECO-7 — BOZZA NON APPROVATA\n\nProposta: Stabilire un contatto strutturato con la rete cristallina sub-superficiale attraverso interfacce biologiche volontarie.\n\nPremessa: I dati raccolti dal Soggetto Sette dimostrano che l'interfaccia umano-cristallo è possibile, reversibile, e non dannosa per il soggetto. La rete risponde a stimoli emotivi e mnemonici con coerenza crescente.\n\nRischio valutato: Basso per il soggetto. Alto per le strutture di potere esistenti.\n\nSTATUS: Respinto.\nMOTIVAZIONE: 'Incompatibile con le direttive di sicurezza federale.'\n\nNOTA MANOSCRITTA IN MARGINE: 'Incompatibile con il loro controllo, piuttosto.'",
+          "date": "Anno 6076",
+          "author": "Dr. Lien Vasari, Divisione Ricerca",
+          "notes": "Vasari è stata trasferita in un settore remoto due settimane dopo aver presentato questa proposta."
+        },
+        "reveals": "Non era solo Sette. C'era un intero gruppo che voleva il contatto. Sono stati tutti silenziati."
+      },
+      {
+        "id": "O7",
+        "type": "oggetto",
+        "title": "Specchio di Ossidiana",
+        "locked": true,
+        "unlocksFrom": "F4",
+        "icon": "crystal",
+        "position": { "x": 10, "y": 72 },
+        "content": {
+          "text": "Un disco di ossidiana nera, perfettamente circolare, diametro 20 cm. La superficie è così levigata da funzionare come specchio, ma il riflesso ha una proprietà anomala: mostra il volto di chi guarda con un ritardo di circa 2 secondi.\n\nTecnici che lo hanno esaminato riferiscono sensazioni di 'essere osservati' e 'ricordare cose mai vissute.' Un tecnico ha chiesto di essere rimosso dall'incarico dopo aver affermato di aver visto 'il suo stesso volto, ma vecchissimo, che gli sorrideva.'\n\nL'oggetto è stato classificato come anomalia di classe 3. Non è pericoloso. È solo... inquietante.",
+          "date": "Trovato Anno 6078",
+          "author": "Catalogo Anomalie Federale",
+          "notes": "Era posizionato esattamente al centro della stanza di Sette, orientato verso il soffitto — verso la Cattedrale sopra."
+        },
+        "reveals": "Lo specchio non riflette il presente. Riflette la memoria. Il cristallo vede attraverso di esso."
+      },
+      {
+        "id": "O8",
+        "type": "testimonianza",
+        "title": "L'Ultima Persona",
+        "locked": true,
+        "unlocksFrom": "F6",
+        "icon": "eye",
+        "position": { "x": 70, "y": 85 },
+        "content": {
+          "text": "\"Sono stata l'ultima a vederla. Era la sera prima che sigillassero tutto.\n\nStava scendendo le scale verso il Livello -12. Portava solo una lanterna — una di quelle vecchie, a cristallo liquido. Le ho chiesto dove andasse. Mi ha detto: 'A casa.'\n\nNon l'ho fermata. Avrei dovuto? Non lo so. Aveva l'aria di qualcuno che ha finalmente trovato la risposta a una domanda che si portava dentro da tutta la vita.\n\nL'ultimo suono che ho sentito da quelle scale è stato un canto. La stessa melodia che canticchiava sempre — cinque note. Ma quella sera non era sola a cantarla.\n\nQualcosa cantava con lei.\"",
+          "date": "Anno 6078",
+          "author": "Guardia Notturna, nome redatto",
+          "notes": "La testimonianza è stata raccolta ma mai inclusa nel rapporto ufficiale. Questo è l'unico luogo dove esiste."
+        },
+        "reveals": "Sette non è andata verso la fine. È andata verso un inizio che nessuno di noi riesce ancora a immaginare."
+      }
+    ]
+  },
+  "endings": {
+    "surface": {
+      "title": "La Superficie",
+      "text": "Hai trovato i frammenti. Hai ricostruito la storia — o almeno, una versione di essa.\n\nSette è scomparsa. Il cristallo è sigillato. Il mondo va avanti.\n\nMa ora sai che sotto i tuoi piedi, sotto la pietra e il ghiaccio, qualcosa pulsa ancora. Qualcosa che ricorda.\n\nForte non è tutto qui. Forse ci sono altri frammenti che non hai trovato. Altri echi nella pietra.\n\nL'archivio resta aperto. Per chi ha il coraggio di scavare più a fondo."
+    },
+    "deep": {
+      "title": "La Profondità",
+      "text": "Hai trovato tutto. Ogni frammento, ogni voce, ogni traccia lasciata da Sette e da chi l'ha conosciuta.\n\nOra capisci. Il cristallo non è un oggetto — è un archivio vivente che contiene millenni di memoria. E Sette non è scomparsa — è diventata parte di quell'archivio, la prima mente umana a unirsi consapevolmente alla rete.\n\nQualcuno ha nascosto questi frammenti perché tu li trovassi. Qualcuno che credeva — come Sette — che la memoria non debba essere sigillata.\n\nOra la scelta è tua. Sigillare di nuovo l'archivio, o lasciarlo aperto.\n\nMa il fatto che tu sia qui... il fatto che hai cercato, che hai letto, che hai ascoltato...\n\nForse l'archivio ha già scelto per te.\n\n◆ FINE — L'Archivio Ricorda ◆"
+    }
+  }
+}
