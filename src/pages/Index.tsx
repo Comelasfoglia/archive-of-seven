@@ -45,7 +45,17 @@ const Index = () => {
           title={data.meta.title}
           subtitle={data.meta.subtitle}
           introText={data.meta.intro_text}
-          onEnter={() => setScreen('map')}
+          onEnter={() => setScreen('character-select')}
+        />
+      )}
+
+      {screen === 'character-select' && (
+        <CharacterSelectScreen
+          characters={PLACEHOLDER_CHARACTERS}
+          onConfirm={(char) => {
+            setSelectedCharacter(char);
+            setScreen('map');
+          }}
         />
       )}
 
