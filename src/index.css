@@ -2,95 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 240 30% 5%;
+    --foreground: 270 30% 92%;
+    --card: 240 25% 8%;
+    --card-foreground: 270 30% 92%;
+    --popover: 240 25% 8%;
+    --popover-foreground: 270 30% 92%;
+    --primary: 199 92% 64%;
+    --primary-foreground: 240 30% 5%;
+    --secondary: 268 40% 73%;
+    --secondary-foreground: 240 30% 5%;
+    --muted: 255 20% 20%;
+    --muted-foreground: 262 18% 50%;
+    --accent: 45 100% 64%;
+    --accent-foreground: 240 30% 5%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 270 30% 92%;
+    --border: 265 25% 20%;
+    --input: 265 25% 20%;
+    --ring: 262 100% 65%;
+    --radius: 0px;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --bg-deep: #0a0a12;
+    --bg-stone: #111120;
+    --bg-panel: #161625;
+    --crystal-blue: #4fc3f7;
+    --crystal-violet: #b39ddb;
+    --crystal-gold: #ffd54f;
+    --crystal-glow: rgba(79, 195, 247, 0.15);
+    --rune-dim: #2a2a4a;
+    --rune-lit: #7c4dff;
+    --text-primary: #e8e4f0;
+    --text-dim: #7a7090;
+    --border-stone: #2a2540;
+    --border-glow: rgba(179, 157, 219, 0.4);
+    --testimony-green: #2e5a3a;
+    --diary-red: #6b2d2d;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 240 25% 8%;
+    --sidebar-foreground: 262 18% 50%;
+    --sidebar-primary: 262 100% 65%;
+    --sidebar-primary-foreground: 270 30% 92%;
+    --sidebar-accent: 240 25% 12%;
+    --sidebar-accent-foreground: 270 30% 92%;
+    --sidebar-border: 265 25% 20%;
+    --sidebar-ring: 262 100% 65%;
   }
 }
 
@@ -98,8 +56,158 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground;
+    font-family: 'Crimson Pro', serif;
+    cursor: crosshair;
+    overflow-x: hidden;
   }
+}
+
+@layer utilities {
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+  .font-crimson {
+    font-family: 'Crimson Pro', serif;
+  }
+  .font-mono-space {
+    font-family: 'Space Mono', monospace;
+  }
+}
+
+/* Cursor glow */
+body::after {
+  content: '';
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 195, 247, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+/* Background cavern */
+.bg-cavern {
+  background: radial-gradient(ellipse at 50% 50%, #0d0d1a 0%, #070710 100%);
+}
+
+/* Panel stone borders */
+.panel-stone {
+  border: 1px solid var(--border-stone);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5), 0 0 1px var(--border-glow);
+  background: var(--bg-panel);
+}
+
+/* Node glow states */
+.node-glow-blue {
+  filter: drop-shadow(0 0 15px var(--crystal-blue)) drop-shadow(0 0 30px rgba(79, 195, 247, 0.3));
+}
+.node-glow-gold {
+  filter: drop-shadow(0 0 15px var(--crystal-gold)) drop-shadow(0 0 30px rgba(255, 213, 79, 0.3));
+}
+.node-glow-violet {
+  filter: drop-shadow(0 0 15px var(--crystal-violet)) drop-shadow(0 0 30px rgba(179, 157, 219, 0.3));
+}
+.node-glow-green {
+  filter: drop-shadow(0 0 15px var(--testimony-green)) drop-shadow(0 0 30px rgba(46, 90, 58, 0.3));
+}
+.node-glow-red {
+  filter: drop-shadow(0 0 15px var(--diary-red)) drop-shadow(0 0 30px rgba(107, 45, 45, 0.3));
+}
+.node-glow-finale {
+  filter: drop-shadow(0 0 20px var(--crystal-gold)) drop-shadow(0 0 40px rgba(255, 213, 79, 0.5));
+}
+
+.node-locked {
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+/* Clip path for stone panel */
+.clip-stone {
+  clip-path: polygon(
+    12px 0, calc(100% - 12px) 0,
+    100% 12px, 100% calc(100% - 12px),
+    calc(100% - 12px) 100%, 12px 100%,
+    0 calc(100% - 12px), 0 12px
+  );
+}
+
+/* Animated dash for SVG connections */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+.animate-dash {
+  animation: dash-flow 2s linear infinite;
+}
+
+/* Crystal pulse */
+@keyframes crystal-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+.animate-crystal-pulse {
+  animation: crystal-pulse 3.5s ease-in-out infinite;
+}
+
+/* Node pulse */
+@keyframes node-pulse {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+.animate-node-pulse {
+  animation: node-pulse 3s ease-in-out infinite;
+}
+
+/* Particle float */
+@keyframes particle-float {
+  0% { transform: translate(0, 0) scale(1); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(var(--px, 30px), var(--py, -60px)) scale(0); opacity: 0; }
+}
+.animate-particle {
+  animation: particle-float var(--duration, 3s) ease-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Reveals fade in */
+@keyframes reveals-appear {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-reveals {
+  animation: reveals-appear 1.5s ease-out forwards;
+}
+
+/* Fragment panel entrance */
+@keyframes panel-enter {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+.animate-panel-enter {
+  animation: panel-enter 0.6s ease-out forwards;
+}
+
+/* Stroke dash animated lines */
+.connection-line {
+  stroke-dasharray: 8 6;
+  animation: dash-flow 2s linear infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rune-dim);
 }
