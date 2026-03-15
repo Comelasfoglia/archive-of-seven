@@ -138,10 +138,13 @@ export function useArchive() {
     localStorage.removeItem(STORAGE_KEY);
   }, []);
 
+  const characters = data?.character_lens?.characters ?? [];
+
   return {
     data,
     loading,
     allFragments,
+    characters,
     isOpened,
     isUnlocked,
     openFragment,

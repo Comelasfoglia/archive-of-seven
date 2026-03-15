@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
 export interface CharacterOption {
+  id: number;
   name: string;
+  axes: string[];
   assessment_archetype: string;
 }
 
@@ -9,32 +11,6 @@ interface CharacterSelectScreenProps {
   characters: CharacterOption[];
   onConfirm: (character: CharacterOption) => void;
 }
-
-// Canonical characters from character_lens
-export const PLACEHOLDER_CHARACTERS: CharacterOption[] = [
-  { name: 'Xaroth', assessment_archetype: 'METODO' },
-  { name: 'Ferro Gentile', assessment_archetype: 'TRADIZIONE' },
-  { name: 'Kragath', assessment_archetype: 'IMPULSO' },
-  { name: 'Tharsos', assessment_archetype: 'TRADIZIONE' },
-  { name: 'Umbrus', assessment_archetype: 'MISTERO' },
-  { name: 'Sentius', assessment_archetype: 'METODO' },
-  { name: 'Voltar', assessment_archetype: 'MISTERO' },
-  { name: 'Lunara', assessment_archetype: 'MISTERO' },
-  { name: 'Nocturne', assessment_archetype: 'IMPULSO' },
-  { name: 'Draxis', assessment_archetype: 'IMPULSO' },
-  { name: 'Lux Fragilis', assessment_archetype: 'MISTERO' },
-  { name: 'Pelagar', assessment_archetype: 'IMPULSO' },
-  { name: 'Terros', assessment_archetype: 'TRADIZIONE' },
-  { name: 'Pyraxis', assessment_archetype: 'IMPULSO' },
-  { name: 'Aegis', assessment_archetype: 'EMPATIA' },
-  { name: 'Silvana', assessment_archetype: 'MISTERO' },
-  { name: 'Mortis Rex', assessment_archetype: 'TRADIZIONE' },
-  { name: 'Radix Magnus', assessment_archetype: 'TRADIZIONE' },
-  { name: 'Geminus', assessment_archetype: 'MISTERO' },
-  { name: 'Oculus Ferox', assessment_archetype: 'METODO' },
-  { name: 'Morwen', assessment_archetype: 'MISTERO' },
-  { name: 'Ventus Nobilis', assessment_archetype: 'EMPATIA' },
-];
 
 export function CharacterSelectScreen({ characters, onConfirm }: CharacterSelectScreenProps) {
   const [selected, setSelected] = useState<CharacterOption | null>(null);

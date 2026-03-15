@@ -99,7 +99,7 @@ const Index = () => {
     <>
       {screen === 'character-select' && (
         <CharacterSelectScreen
-          characters={PLACEHOLDER_CHARACTERS}
+          characters={characters}
           onConfirm={(char) => {
             setSelectedCharacter(char);
             setScreen('intro');
