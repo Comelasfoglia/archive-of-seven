@@ -141,9 +141,6 @@ body::after {
 .animate-unlock-pulse {
   animation: unlock-pulse 0.8s ease-in-out 4;
 }
-  opacity: 0.35;
-  filter: grayscale(1);
-}
 
 /* Clip path for stone panel */
 .clip-stone {
