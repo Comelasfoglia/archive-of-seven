@@ -112,7 +112,8 @@ export function useArchive() {
   const openedCount = openedIds.length;
   const totalCount = allFragments.length;
 
-  const allMandatoryOpened = mandatoryIds.every(id => openedIds.includes(id));
+  const mandatoryOpenedCount = mandatoryIds.filter(id => openedIds.includes(id)).length;
+  const allMandatoryOpened = mandatoryOpenedCount === mandatoryIds.length && mandatoryIds.length > 0;
   const optionalOpenedCount = optionalIds.filter(id => openedIds.includes(id)).length;
 
   const resetProgress = useCallback(() => {
