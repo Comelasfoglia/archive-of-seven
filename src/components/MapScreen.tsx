@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { Fragment } from '../hooks/useArchive';
 import { FragmentIcon } from './RuneIcons';
 
@@ -12,6 +13,7 @@ interface MapScreenProps {
   totalCount: number;
   allMandatoryOpened: boolean;
   onFinale: () => void;
+  mandatoryOpenedCount: number;
 }
 
 const typeColor: Record<string, string> = {
@@ -30,42 +32,81 @@ const typeGlow: Record<string, string> = {
   diario: 'node-glow-red',
 };
 
+// "Read" rune — small checkmark-like symbol
+function ReadRune({ color }: { color: string }) {
+  return (
+    <svg width="10" height="10" viewBox="0 0 10 10">
+      <polygon points="5,0 10,5 5,10 0,5" fill={color} fillOpacity="0.5" />
+      <circle cx="5" cy="5" r="1.5" fill={color} fillOpacity="0.8" />
+    </svg>
+  );
+}
+
 function HexNode({
   x, y, color, label, title, unlocked, opened, glowClass, icon, onClick,
+  prerequisiteTitle, prerequisiteIcon, prerequisiteColor,
+  prerequisitePos, justUnlocked,
+  onHover,
 }: {
   x: number; y: number; color: string; label: string; title: string;
   unlocked: boolean; opened: boolean; glowClass: string; icon: string;
   onClick: () => void;
+  prerequisiteTitle?: string;
+  prerequisiteIcon?: string;
+  prerequisiteColor?: string;
+  prerequisitePos?: { x: number; y: number };
+  justUnlocked?: boolean;
+  onHover?: (hovering: boolean) => void;
 }) {
-  const nodeSize = 48;
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseEnter = () => { setHovered(true); onHover?.(true); };
+  const handleMouseLeave = () => { setHovered(false); onHover?.(false); };
+
+  // Opened nodes: slightly smaller, reduced glow
+  const openedScale = opened && unlocked ? 'scale(0.9)' : 'scale(1)';
+  const openedGlowClass = opened && unlocked ? '' : glowClass;
+  const openedGlowReduced = opened && unlocked ? 'node-glow-read' : '';
+
   return (
     <g
       transform={`translate(${x}, ${y})`}
-      className={`${unlocked ? `${glowClass} animate-node-pulse cursor-pointer` : 'node-locked cursor-not-allowed'} transition-all duration-700`}
+      className={`${unlocked ? `${openedGlowClass} ${openedGlowReduced} ${justUnlocked ? 'animate-unlock-pulse' : 'animate-node-pulse'} cursor-pointer` : 'node-locked cursor-not-allowed'} transition-all duration-700`}
       onClick={unlocked ? onClick : undefined}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ transform: `translate(${x}px, ${y}px)` }}
     >
-      {/* Hexagon shape */}
-      <polygon
-        points="-24,-14 0,-28 24,-14 24,14 0,28 -24,14"
-        fill={unlocked ? (opened ? 'rgba(22,22,37,0.8)' : 'rgba(22,22,37,0.95)') : 'rgba(10,10,18,0.6)'}
-        stroke={unlocked ? color : 'var(--rune-dim)'}
-        strokeWidth={unlocked ? 1.5 : 1}
-        strokeDasharray={unlocked ? 'none' : '4 3'}
-      />
-      {/* Icon inside */}
-      <foreignObject x={-12} y={-12} width={24} height={24}>
-        <div className="flex items-center justify-center w-full h-full">
-          <FragmentIcon icon={icon} size={18} color={unlocked ? color : 'var(--rune-dim)'} />
-        </div>
-      </foreignObject>
-      {/* Read mark */}
-      {opened && unlocked && (
+      <g style={{ transform: openedScale, transformOrigin: '0 0', transition: 'transform 0.5s ease' }}>
+        {/* Hexagon shape */}
         <polygon
-          points="18,-22 24,-18 21,-14"
-          fill={color}
-          fillOpacity="0.6"
+          points="-24,-14 0,-28 24,-14 24,14 0,28 -24,14"
+          fill={unlocked ? (opened ? 'rgba(22,22,37,0.8)' : 'rgba(22,22,37,0.95)') : 'rgba(10,10,18,0.6)'}
+          stroke={unlocked ? color : 'var(--rune-dim)'}
+          strokeWidth={unlocked ? 1.5 : 1}
+          strokeDasharray={unlocked ? 'none' : '4 3'}
         />
-      )}
+        {/* Icon inside */}
+        <foreignObject x={-12} y={-12} width={24} height={24}>
+          <div className="flex items-center justify-center w-full h-full">
+            <FragmentIcon icon={icon} size={18} color={unlocked ? color : 'var(--rune-dim)'} />
+          </div>
+        </foreignObject>
+        {/* Read rune (opened nodes) */}
+        {opened && unlocked && (
+          <foreignObject x={12} y={12} width={14} height={14}>
+            <ReadRune color={color} />
+          </foreignObject>
+        )}
+        {/* Small prerequisite icon on locked nodes */}
+        {!unlocked && prerequisiteIcon && prerequisiteColor && (
+          <foreignObject x={14} y={14} width={14} height={14}>
+            <div className="flex items-center justify-center w-full h-full" style={{ opacity: 0.6 }}>
+              <FragmentIcon icon={prerequisiteIcon} size={10} color={prerequisiteColor} />
+            </div>
+          </foreignObject>
+        )}
+      </g>
       {/* Labels below */}
       <text
         y={38}
@@ -85,17 +126,40 @@ function HexNode({
       >
         {title.length > 16 ? title.slice(0, 15) + '…' : title}
       </text>
-      {/* Locked tooltip */}
-      {!unlocked && (
-        <text
-          y={62}
-          textAnchor="middle"
-          fill="var(--rune-dim)"
-          fontSize="8"
-          fontFamily="'Space Mono', monospace"
-        >
-          {'→ ' + (label[0] === 'O' ? '' : '') + '...'}
-        </text>
+
+      {/* Locked tooltip on hover */}
+      {!unlocked && hovered && prerequisiteTitle && (
+        <g>
+          <rect
+            x={-90} y={-52} width={180} height={22} rx={2}
+            fill="rgba(10,10,18,0.92)"
+            stroke="var(--border-stone)"
+            strokeWidth="0.5"
+          />
+          <text
+            y={-37}
+            textAnchor="middle"
+            fill="var(--text-dim)"
+            fontSize="9"
+            fontFamily="'Crimson Pro', serif"
+            fontStyle="italic"
+          >
+            {`Leggi prima: ${prerequisiteTitle}`}
+          </text>
+        </g>
+      )}
+
+      {/* Animated dashed line to prerequisite on hover */}
+      {!unlocked && hovered && prerequisitePos && (
+        <line
+          x1={0} y1={0}
+          x2={prerequisitePos.x - x} y2={prerequisitePos.y - y}
+          stroke="var(--text-dim)"
+          strokeWidth="1"
+          strokeDasharray="4 4"
+          strokeOpacity="0.5"
+          className="animate-dash"
+        />
       )}
     </g>
   );
@@ -104,8 +168,33 @@ function HexNode({
 export function MapScreen({
   fragments, isUnlocked, isOpened, onSelect,
   playerName, playerAxis, openedCount, totalCount,
-  allMandatoryOpened, onFinale,
+  allMandatoryOpened, onFinale, mandatoryOpenedCount,
 }: MapScreenProps) {
+  const [justUnlockedIds, setJustUnlockedIds] = useState<Set<string>>(new Set());
+  const prevOpenedRef = useRef<Set<string>>(new Set());
+
+  // Track newly unlocked nodes when a fragment is read
+  useEffect(() => {
+    const currentOpened = new Set(fragments.filter(f => isOpened(f.id)).map(f => f.id));
+    const newlyOpened = [...currentOpened].filter(id => !prevOpenedRef.current.has(id));
+
+    if (newlyOpened.length > 0) {
+      // Find children of newly opened fragments
+      const newlyUnlocked = new Set<string>();
+      for (const f of fragments) {
+        if (f.unlocksFrom && newlyOpened.includes(f.unlocksFrom) && !currentOpened.has(f.id)) {
+          newlyUnlocked.add(f.id);
+        }
+      }
+      if (newlyUnlocked.size > 0) {
+        setJustUnlockedIds(newlyUnlocked);
+        const timer = setTimeout(() => setJustUnlockedIds(new Set()), 3000);
+        return () => clearTimeout(timer);
+      }
+    }
+    prevOpenedRef.current = currentOpened;
+  }, [fragments, isOpened]);
+
   // Build connections
   const connections: { from: Fragment; to: Fragment }[] = [];
   for (const f of fragments) {
@@ -114,6 +203,9 @@ export function MapScreen({
       if (parent) connections.push({ from: parent, to: f });
     }
   }
+
+  // Build lookup for prerequisite info
+  const fragmentById = Object.fromEntries(fragments.map(f => [f.id, f]));
 
   return (
     <div className="fixed inset-0 bg-cavern flex flex-col">
@@ -124,7 +216,12 @@ export function MapScreen({
           <span className="font-mono-space text-xs" style={{ color: 'var(--text-dim)' }}>{playerAxis}</span>
         </div>
         <span className="font-cinzel text-xs tracking-[0.3em] uppercase" style={{ color: 'var(--rune-dim)' }}>ARCHIVIO</span>
-        <span className="font-mono-space text-sm" style={{ color: 'var(--text-dim)' }}>{openedCount} / {totalCount}</span>
+        {/* Mandatory progress counter */}
+        {allMandatoryOpened ? (
+          <span className="font-cinzel text-lg" style={{ color: 'var(--crystal-gold)' }}>⊕</span>
+        ) : (
+          <span className="font-mono-space text-sm" style={{ color: 'var(--text-dim)' }}>{mandatoryOpenedCount} / 6</span>
+        )}
       </header>
 
       {/* Map area */}
@@ -150,21 +247,30 @@ export function MapScreen({
           ))}
 
           {/* Fragment nodes */}
-          {fragments.map(f => (
-            <HexNode
-              key={f.id}
-              x={f.position.x * 10}
-              y={f.position.y * 6}
-              color={typeColor[f.type] || 'var(--crystal-blue)'}
-              glowClass={typeGlow[f.type] || 'node-glow-blue'}
-              label={f.id}
-              title={f.title}
-              icon={f.icon}
-              unlocked={isUnlocked(f)}
-              opened={isOpened(f.id)}
-              onClick={() => onSelect(f)}
-            />
-          ))}
+          {fragments.map(f => {
+            const prereq = f.unlocksFrom ? fragmentById[f.unlocksFrom] : null;
+            const prereqColor = prereq ? (typeColor[prereq.type] || 'var(--crystal-blue)') : undefined;
+            return (
+              <HexNode
+                key={f.id}
+                x={f.position.x * 10}
+                y={f.position.y * 6}
+                color={typeColor[f.type] || 'var(--crystal-blue)'}
+                glowClass={typeGlow[f.type] || 'node-glow-blue'}
+                label={f.id}
+                title={f.title}
+                icon={f.icon}
+                unlocked={isUnlocked(f)}
+                opened={isOpened(f.id)}
+                onClick={() => onSelect(f)}
+                prerequisiteTitle={prereq?.title}
+                prerequisiteIcon={prereq?.icon}
+                prerequisiteColor={prereqColor}
+                prerequisitePos={prereq ? { x: prereq.position.x * 10, y: prereq.position.y * 6 } : undefined}
+                justUnlocked={justUnlockedIds.has(f.id)}
+              />
+            );
+          })}
 
           {/* Finale node — octagram */}
           {allMandatoryOpened && (
@@ -174,10 +280,8 @@ export function MapScreen({
               onClick={onFinale}
               style={{ animation: 'node-pulse 1.5s ease-in-out infinite' }}
             >
-              {/* Outer glow */}
               <circle cx="0" cy="0" r="40" fill="var(--crystal-gold)" fillOpacity="0.08" />
               <circle cx="0" cy="0" r="28" fill="var(--crystal-gold)" fillOpacity="0.06" />
-              {/* 8-pointed star */}
               <polygon
                 points="0,-30 8,-10 28,-10 12,4 18,24 0,14 -18,24 -12,4 -28,-10 -8,-10"
                 fill="var(--crystal-gold)"
@@ -185,13 +289,11 @@ export function MapScreen({
                 stroke="var(--crystal-gold)"
                 strokeWidth="1.5"
               />
-              {/* Inner diamond */}
               <polygon
                 points="0,-12 12,0 0,12 -12,0"
                 fill="var(--crystal-gold)"
                 fillOpacity="0.5"
               />
-              {/* Label */}
               <text
                 y={46}
                 textAnchor="middle"
