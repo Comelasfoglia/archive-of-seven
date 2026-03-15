@@ -4,7 +4,7 @@ export interface FragmentContent {
   text: string;
   date: string;
   author: string;
-  notes: string;
+  notes: string | null;
 }
 
 export interface FragmentChallenge {
@@ -16,7 +16,7 @@ export interface FragmentChallenge {
 
 export interface Fragment {
   id: string;
-  type: 'documento' | 'audio' | 'oggetto' | 'testimonianza' | 'diario';
+  type: string;
   title: string;
   locked: boolean;
   unlocksFrom: string | null;
@@ -27,21 +27,38 @@ export interface Fragment {
   challenges?: FragmentChallenge[];
 }
 
+export interface CharacterLensEntry {
+  id: number;
+  name: string;
+  axes: string[];
+  assessment_archetype: string;
+}
+
 export interface ArchiveData {
   meta: {
     title: string;
     subtitle: string;
     archivist: string;
-    intro_text: string;
-    player: { name: string; axis: string };
+    version?: string;
   };
+  axes?: Record<string, {
+    label: string;
+    threshold: number | null;
+    stat: string;
+    characters: string[];
+    note?: string;
+  }>;
   fragments: {
     mandatory: Fragment[];
     optional: Fragment[];
   };
   endings: {
-    surface: { title: string; text: string };
-    deep: { title: string; text: string };
+    surface: { text: string; trigger?: string; optional_found?: string };
+    deep: { text: string; trigger?: string; optional_found?: string };
+  };
+  character_lens?: {
+    description: string;
+    characters: CharacterLensEntry[];
   };
 }
 

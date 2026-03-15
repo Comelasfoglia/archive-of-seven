@@ -1,12 +1,41 @@
 {
   "meta": {
     "title": "Archivio — Anno 6080",
-    "subtitle": "Qualcuno ha lasciato qualcosa.",
+    "subtitle": "Qualcuno ha lasciato qualcosa. Non è chiaro se volesse essere trovato.",
     "archivist": "Sette",
-    "intro_text": "Questo archivio è stato trovato sotto le rovine della Cattedrale del Settimo Sigillo. I frammenti al suo interno sono stati catalogati ma non ordinati. Non sappiamo chi fosse Sette. Sappiamo solo che voleva essere ricordata.",
-    "player": {
-      "name": "Archivista",
-      "axis": "Memoria"
+    "version": "0.3-content"
+  },
+  "axes": {
+    "FORZA": {
+      "label": "Forza",
+      "threshold": 6,
+      "stat": "Fisico",
+      "characters": ["Ferro Gentile", "Kragath", "Tharsos", "Umbrus", "Pelagar", "Terros", "Radix Magnus", "Oculus Ferox", "Aegis"]
+    },
+    "VELOCITÀ": {
+      "label": "Velocità",
+      "threshold": 6,
+      "stat": "Agilità",
+      "characters": ["Kragath", "Voltar", "Draxis", "Lux Fragilis", "Silvana", "Ventus Nobilis"]
+    },
+    "MENTE": {
+      "label": "Mente",
+      "threshold": 5,
+      "stat": "Testa",
+      "characters": ["Xaroth", "Ferro Gentile", "Voltar", "Lunara", "Lux Fragilis", "Geminus", "Oculus Ferox", "Morwen"]
+    },
+    "MAGIA": {
+      "label": "Magia",
+      "threshold": 5,
+      "stat": "Stelle",
+      "characters": ["Xaroth", "Lunara", "Pyraxis", "Morwen", "Geminus"]
+    },
+    "PERDITA": {
+      "label": "Perdita",
+      "threshold": null,
+      "stat": "background",
+      "note": "Asse narrativo. Personaggi che hanno perso qualcosa di specifico nel background.",
+      "characters": ["Sentius", "Draxis", "Ventus Nobilis", "Silvana", "Voltar", "Aegis", "Geminus"]
     }
   },
   "fragments": {
@@ -14,239 +43,467 @@
       {
         "id": "F1",
         "type": "documento",
-        "title": "La Prima Luce",
+        "title": "Inventario parziale — sezione terza",
         "locked": false,
         "unlocksFrom": null,
         "icon": "scroll",
-        "position": { "x": 25, "y": 30 },
+        "position": {"x": 30, "y": 40},
         "content": {
-          "text": "Ho visto la luce cristallina per la prima volta quando avevo dodici anni. Non era il sole — era qualcosa sotto il ghiaccio, qualcosa che pulsava come un cuore separato dal corpo. I Custodi dicevano che era pericolosa. Io sapevo già che era bella.\n\nQuella notte ho rubato una lanterna e sono tornata da sola. Il cristallo cantava. Una nota lunga, impossibile, che sentivo non nelle orecchie ma nello sterno. Ho poggiato la mano sulla superficie e ho visto — per un istante — tutti i luoghi dove sarei stata.\n\nNon ho mai raccontato a nessuno cosa ho visto. Fino ad ora.",
-          "date": "Anno 6043",
+          "text": "Sezione III — materiali di provenienza non ufficiale\n\nVoce 841: trascrizione di seduta, sala interna est, non datata. Fonte: addetto alle pulizie, reparto minerario. Grado di affidabilità: medio-alto. Conservato in duplice copia.\n\nVoce 842: frammento di rapporto tecnico, intestazione parzialmente bruciata. Contenuto: misurazioni di risonanza alla profondità di 4.200 metri sotto il Forte Crisalide. La scala delle letture supera il range di calibrazione degli strumenti. Note marginali di mano sconosciuta: «non diciamo ai superiori».\n\nVoce 843: fotografia di un Krystal anomalo. Vedi sezione VII per descrizione materiale. Qui si annota solo la provenienza: trovato in possesso di un lavoratore allontanato dal servizio tre giorni dopo il ritrovamento. Il lavoratore non è stato più rintracciato.\n\nVoce 844: elenco di nomi. Trentasette persone che hanno richiesto il trasferimento dal settore estrattivo meridionale nello spazio di un mese. Diciassette richieste accolte. Venti risultano ancora «in valutazione».\n\nVoce 845: copia manoscritta di comunicato interno, non distribuito. Oggetto: protocollo di risposta ai Tremori di intensità superiore alla soglia 6. Il protocollo esiste. Non è mai stato reso pubblico.\n\nVoce 846: —\nVoce 847: completo.",
+          "date": "Anno 6072",
           "author": "Sette",
-          "notes": "Il frammento era avvolto in tessuto isolante termico. La calligrafia è irregolare, probabilmente scritta di notte."
+          "notes": "La numerazione ricomincia da 841. Le sezioni precedenti non sono in questo archivio — o non sono mai state qui."
         },
-        "reveals": "Il cristallo sotto il ghiaccio — qualcuno lo ha cercato prima di lei."
+        "reveals": "L'archivio è più grande di quanto sembra. E qualcuno sapeva del Tremore molto prima del Tremore.",
+        "challenges": [
+          {
+            "axis": "MENTE",
+            "characters": ["Xaroth", "Ferro Gentile", "Voltar", "Lux Fragilis", "Geminus", "Oculus Ferox", "Morwen", "Lunara"],
+            "reveal": "Il sistema di codifica non è alfabetico né cronologico. Sette numerava per categoria di rischio — più alto il numero, più pericolosa l'informazione per chi la possedeva. La voce 847 è marcata «completo», ma è vuota. Sette ha chiuso il registro in anticipo. Ha smesso di numerare dove voleva smettere."
+          },
+          {
+            "axis": "MAGIA",
+            "characters": ["Xaroth", "Lunara", "Pyraxis", "Morwen", "Geminus"],
+            "reveal": "Tra le righe dell'inventario c'è una firma energetica residua — appena percettibile, come il calore di una mano su una pietra fredda. Sette aveva maneggiato Krystal. Non come minatore, non come tecnico. Come qualcuno che li aveva tenuti a lungo, in silenzio, cercando di capire cosa contenessero."
+          }
+        ]
       },
       {
         "id": "F2",
         "type": "audio",
-        "title": "Trasmissione Interrotta",
-        "locked": true,
-        "unlocksFrom": "F1",
+        "title": "Registrazione — conversazione non autorizzata",
+        "locked": false,
+        "unlocksFrom": null,
         "icon": "wave",
-        "position": { "x": 45, "y": 18 },
+        "position": {"x": 55, "y": 25},
         "content": {
-          "text": "[Registrazione audio — qualità degradata, fruscio costante]\n\n\"...non rispondono dal Settore Nove. Ripeto: il Settore Nove è silenzioso da tre cicli. Sette, se ricevi questo, devi sapere che il Consiglio ha votato. Hanno deciso di sigillare l'accesso inferiore.\n\nSo cosa significa per te. So cosa c'è laggiù.\n\nNon tornare. Qualunque cosa tu abbia trovato... lasciala dove l'hai trovata. Non tutte le luci sono fatte per essere seguite.\"\n\n[Fine trasmissione — timestamp corrotto]",
-          "date": "Anno 6051",
-          "author": "Voce non identificata",
-          "notes": "La registrazione è stata trovata su un dispositivo di comunicazione danneggiato. Il segnale porta tracce di crittografia militare di terzo livello."
+          "text": "[La registrazione inizia a conversazione già avviata. Qualità audio degradata. Alcune parole sono contrassegnate con ///]\n\nVOCE A: — non è un problema strutturale, te lo dico io. Le pareti reggono. È quello che c'è sotto che non regge.\n\nVOCE B (probabilmente Sette — non parla quasi mai): Sotto cosa?\n\nVOCE A: Sotto tutto. Sotto il Forte, sotto le Dune, sotto il Bastione. C'è qualcosa là sotto che si muove. Non è un cedimento geologico. I cedimenti geologici non /// come questo. I cedimenti geologici non hanno un ritmo.\n\n[pausa — 4 secondi]\n\nVOCE A: Ho chiesto al caposquadra. Mi ha detto che i macchinari vibranti a quella profondità creano risonanze secondarie. Che è normale. Che è tutto nei parametri.\n\nVOCE B: E tu ci hai creduto?\n\nVOCE A: [pausa] No. Ma ho smesso di fare domande. Ho moglie. Ho due figlie. Capisci?\n\nVOCE B: Sì.\n\nVOCE A: Il ritmo cambia di notte. Di notte è più /// come se qualcosa sotto di noi stesse dormendo meno bene.\n\n[fine registrazione]",
+          "date": "Anno 6074",
+          "author": "ignoto / Sette",
+          "notes": "La qualità audio peggiora nell'ultima sezione. La parola censurata prima di 'come se qualcosa' potrebbe essere 'lento' o 'regolare'. La seconda parola mancante sembra 'forte'."
         },
-        "reveals": "Chi ha mandato il messaggio conosceva Sette — e sapeva cosa cercava."
+        "reveals": "Qualcuno sapeva. Ha smesso di fare domande perché aveva qualcosa da perdere. Sette ha continuato a fare domande perché — forse — non aveva niente.",
+        "challenges": [
+          {
+            "axis": "VELOCITÀ",
+            "characters": ["Kragath", "Voltar", "Draxis", "Lux Fragilis", "Silvana", "Ventus Nobilis"],
+            "reveal": "Riconosci la qualità dell'eco. La stanza era piccola, con pareti di metallo a meno di due metri — un condotto di servizio, un corridoio tra i reparti. Non un ufficio, non uno spazio aperto. Un posto dove ci si ferma di passaggio, dove si parla solo se si è sicuri che nessuno stia guardando. Sette lo sapeva. Aspettava lì."
+          },
+          {
+            "axis": "PERDITA",
+            "characters": ["Sentius", "Draxis", "Ventus Nobilis", "Silvana", "Voltar", "Aegis", "Geminus"],
+            "reveal": "La Voce A non stava parlando con Sette. Stava parlando a se stessa — Sette era solo un pretesto, qualcuno che ascoltava senza reagire. Quelle parole erano tenute dentro da tempo. Le riconosci: il tono di chi non può dire la verità a nessuno che ama, e allora la dice a uno sconosciuto. Hai usato quella stessa voce. O l'hai sentita."
+          }
+        ]
       },
       {
         "id": "F3",
-        "type": "oggetto",
-        "title": "Frammento di Cristallo Nero",
+        "type": "documento_alterato",
+        "title": "Comunicato ufficiale n. 7741 — annotato",
         "locked": true,
-        "unlocksFrom": "F2",
-        "icon": "crystal",
-        "position": { "x": 65, "y": 35 },
+        "unlocksFrom": "F1",
+        "icon": "stamp",
+        "position": {"x": 20, "y": 60},
         "content": {
-          "text": "Un frammento di cristallo, lungo circa 15 centimetri, di colore nero con venature violette che pulsano debolmente quando esposto a calore corporeo. La superficie è perfettamente liscia su cinque facce; la sesta mostra segni di frattura recente.\n\nAnalisi spettrale: composizione sconosciuta. Non corrisponde a nessun minerale catalogato negli archivi della Federazione. Emette una frequenza subsonica costante a 7.83 Hz — la stessa frequenza della risonanza di Schumann terrestre, un pianeta abbandonato da millenni.\n\nNota a margine, scritta a mano: \"Lo sento anche quando non lo tocco. Soprattutto di notte.\"",
-          "date": "Anno 6055 — Catalogazione",
-          "author": "Archivio Federale, Sezione Anomalie",
-          "notes": "Il cristallo è stato trovato nelle cose personali di Sette dopo la sua scomparsa. Era nascosto in un contenitore schermato artigianale."
+          "text": "COMUNICATO UFFICIALE N. 7741\nEmesso dalla Direzione Centrale — Settore Estrattivo\nAnno 6075, quinto mese\n\nSi comunica che i fenomeni vibratori registrati nelle aree meridionali del Continente rientrano nella normalità operativa prevista dai Protocolli di Estrazione Profonda. Le risonanze percepite dalla popolazione civile sono da attribuirsi alla regolare attività dei macchinari nella Vena Madre.\n\nNon vi è motivo di allerta. Non vi è alcun rischio strutturale. La produzione di Krystal procede nei termini stabiliti.\n\n[marginale, inchiostro diverso]: «Vena Madre» è il nome interno. Il nome nei documenti anteriori al 6060 è «Ferita». Hanno cambiato il nome. Non hanno cambiato quello che è.\n\n[marginale, stessa mano, più avanti]: i macchinari non spiegano le variazioni notturne. Vedi registrazione 842. Vedi anche rapporto tecnico non distribuito — voce 845.\n\n[marginale, inchiostro ancora diverso — aggiunto dopo]: questo comunicato è stato distribuito in sedici varianti. Ciascuna variante omette qualcosa di diverso. Ho trovato quattro varianti. Cerco ancora le altre dodici.",
+          "date": "Anno 6075",
+          "author": "Direzione Centrale / Sette",
+          "notes": "L'inchiostro dei marginali è in tre tonalità diverse. Le annotazioni sono state aggiunte in momenti distanti nel tempo — non in un'unica sessione di lettura."
         },
-        "reveals": "Il cristallo nero è un pezzo di qualcosa di più grande — qualcosa che è stato rotto di proposito."
+        "reveals": "Il Tremore non è mai stato un segreto. È stato un segreto curato, aggiornato, distribuito in versioni calibrate. Non un'omissione: un lavoro.",
+        "challenges": [
+          {
+            "axis": "MENTE",
+            "characters": ["Xaroth", "Ferro Gentile", "Voltar", "Lux Fragilis", "Geminus", "Oculus Ferox", "Morwen", "Lunara"],
+            "reveal": "Il cambio di nome da «Ferita» a «Vena Madre» non è burocrazia. È tecnica. Chi studia i sistemi di controllo lo riconosce: cambi il nome e cambi la percezione, cambi la percezione e cambi la soglia di allarme. Sette non era un osservatore esterno — conosceva il gergo interno. Era stato dentro. O era in contatto con chi era stato dentro."
+          },
+          {
+            "axis": "FORZA",
+            "characters": ["Ferro Gentile", "Kragath", "Tharsos", "Umbrus", "Pelagar", "Terros", "Radix Magnus", "Oculus Ferox"],
+            "reveal": "Le correzioni sono incise nel foglio, non scritte sopra. La penna affondava. Alcune parole — «Ferita», «non distribuito», «dodici» — sono quasi scavate nella carta. Non era frustrazione. Era qualcosa di più controllato della frustrazione: la pressione di chi sta cercando di non gridare mentre scrive."
+          }
+        ]
       },
       {
         "id": "F4",
-        "type": "testimonianza",
-        "title": "La Custode del Livello Sei",
+        "type": "oggetto",
+        "title": "Fotografia — Krystal, classificazione sconosciuta",
         "locked": true,
-        "unlocksFrom": "F3",
-        "icon": "eye",
-        "position": { "x": 35, "y": 55 },
+        "unlocksFrom": "F2",
+        "icon": "crystal",
+        "position": {"x": 65, "y": 50},
         "content": {
-          "text": "\"Sette veniva ogni settimana. Sempre lo stesso giorno, sempre la stessa ora. Chiedeva accesso ai registri pre-Collasso — quelli che nessuno legge più. Stava cercando qualcosa di specifico, ma non mi ha mai detto cosa.\n\nUna volta l'ho trovata che piangeva davanti a uno schermo vuoto. Le ho chiesto se stava bene. Mi ha guardata con quegli occhi — sai, quegli occhi che aveva, come se vedesse attraverso le pareti — e mi ha detto: 'Ho trovato dove finisce.'\n\nNon ho chiesto cosa. Non volevo saperlo.\n\nL'ultima volta che è venuta, ha lasciato un pacchetto sulla mia scrivania. Dentro c'era un frammento di cristallo e un biglietto: 'Quando qualcuno chiederà, dì che mi ricordavi.' Non ho capito. Non capisco ancora.\"",
-          "date": "Anno 6072 — Testimonianza raccolta post-scomparsa",
-          "author": "Maren, Custode Archivi Livello 6",
-          "notes": "Maren è stata intervistata tre volte. Questa è l'unica trascrizione che ha autorizzato alla conservazione."
+          "text": "Fotografia in bianco e nero, qualità media. L'oggetto è posato su un panno scuro. Le proporzioni suggeriscono dimensioni di circa quindici centimetri nel diametro maggiore.\n\nNota a dorso, mano di Sette:\n\n«Trovato: settore estrattivo meridionale, livello -38. Portato in superficie da un lavoratore che non sapeva cosa fare. Il lavoratore è nella lista — voce 844.\n\nLa classificazione ufficiale dei Krystal prevede quattro categorie, tutte basate sulla luminescenza. Questo non rientra in nessuna. Non emette luce. La assorbe.\n\nHo chiesto a tre persone diverse. Nessuno lo aveva mai visto. Una di loro era molto anziana e ha detto solo: 'Questo viene da prima.' Non ha specificato prima di cosa.\n\nNon l'ho tenuto con me. Non saprei spiegare perché. C'era qualcosa nel tenerlo in mano che non mi piaceva — come tenere in mano un momento che non doveva essere fermato.\n\nHo restituito la fotografia alla persona che me l'ha consegnata. Non so dove sia adesso. Non so dove sia adesso lei.»",
+          "date": "senza data",
+          "author": "Sette",
+          "notes": "Il retro della fotografia mostra una piccola rientratura circolare nel cartoncino — il segno di qualcosa di pesante e duro, appoggiato sopra a lungo."
         },
-        "reveals": "Sette sapeva che sarebbe scomparsa. Si stava preparando."
+        "reveals": "I Krystal sono sogni solidificati. Un Krystal che assorbe luce invece di emetterla è un sogno che ha smesso di sognare. O un incubo.",
+        "challenges": [
+          {
+            "axis": "MAGIA",
+            "characters": ["Xaroth", "Lunara", "Morwen", "Geminus", "Pyraxis"],
+            "reveal": "Lo riconosci. Non questo esemplare — il tipo. Un Krystal che non riflette né emette, che assorbe: nella letteratura arcana più antica si chiama Frammento Silente. Non è un Krystal esaurito. È un Krystal che non ha mai sognato. Viene da strati del Dormiente che dormono da così tanto tempo che hanno dimenticato cosa significa farlo."
+          },
+          {
+            "axis": "FORZA",
+            "characters": ["Ferro Gentile", "Kragath", "Tharsos", "Umbrus", "Terros", "Radix Magnus", "Oculus Ferox", "Aegis"],
+            "reveal": "La rientratura circolare sul retro è precisa, profonda — fatta da qualcosa di circa tre centimetri di diametro, applicato con peso costante per ore. Non un oggetto appoggiato per caso. Sette stava usando questa fotografia come superficie di lavoro mentre teneva l'oggetto davanti a sé. Stava guardando il Krystal mentre scriveva di altro. Non riusciva a smettere di guardarlo."
+          }
+        ]
       },
       {
         "id": "F5",
-        "type": "diario",
-        "title": "L'Ultima Pagina",
+        "type": "voce",
+        "title": "Voce datata — ultima registrazione",
         "locked": true,
-        "unlocksFrom": "F4",
-        "icon": "book",
-        "position": { "x": 55, "y": 70 },
+        "unlocksFrom": "F3",
+        "icon": "break",
+        "position": {"x": 40, "y": 72},
         "content": {
-          "text": "Non ho paura.\n\nQuesto è quello che voglio scrivere, ma la mano trema e l'inchiostro si sparge. Quindi dirò la verità: ho paura. Ho paura di quello che ho trovato, ho paura di quello che significa, ho paura che nessuno capirà.\n\nIl cristallo grande — quello sotto la Cattedrale — non è un minerale. È un archivio. Contiene tutto. Ogni voce, ogni pensiero, ogni momento di ogni essere che ha mai toccato la sua superficie. Millenni di memoria compressa in una struttura che non dovrebbe esistere.\n\nE io l'ho ascoltato. Per anni l'ho ascoltato.\n\nOra contiene anche me. I miei ricordi, le mie paure, il suono della mia voce. Sono diventata parte dell'archivio.\n\nQuando troveranno queste pagine, non cercheranno me. Cercheranno il cristallo. Ma il cristallo sono io, ormai.\n\nSette. L'ultima di sette custodi. La prima a capire.",
-          "date": "Anno 6077",
+          "text": "Anno 6080. Stagione fredda. Non so il giorno esatto — ho smesso di tenere il conto dei giorni intorno al secondo mese.\n\nHo trovato la dodicesima variante del comunicato 7741. Erano in tredici, non sedici come credevo. Ho corretto la nota nell'inventario. Voce 847: completo.\n\nC'è qualcosa che non ho scritto da nessuna parte perché non volevo che diventasse reale scrivendolo. Lo scrivo adesso.\n\nIl Tremore di tre notti fa non era uguale agli altri. Non era più forte — era diverso. Era come sentire qualcuno girarsi nel sonno. Non svegliarsi. Girarsi. Come se stesse diventando sempre meno comodo stare\n\n[il testo si interrompe qui. Il documento è corrotto dopo il carattere 847. Non è possibile stabilire se ci siano caratteri successivi andati perduti o se il testo finisse qui.]",
+          "date": "Anno 6080",
           "author": "Sette",
-          "notes": "Ultima pagina del diario personale. Le pagine precedenti sono state rimosse — probabilmente dalla stessa Sette."
+          "notes": "Il file è corrotto dopo il carattere 847. La stessa cifra con cui Sette marcava i documenti completati nell'inventario F1."
         },
-        "reveals": "Il cristallo sotto la Cattedrale è un archivio vivente. Sette non è scomparsa — si è unita ad esso."
+        "reveals": "La scomparsa non era pianificata. O lo era perfettamente. Non c'è modo di saperlo da questo documento.",
+        "challenges": [
+          {
+            "axis": "MENTE",
+            "characters": ["Xaroth", "Ferro Gentile", "Voltar", "Lux Fragilis", "Geminus", "Oculus Ferox", "Morwen", "Lunara"],
+            "reveal": "Il carattere 847. Lo stesso numero con cui Sette marcava i completamenti nell'inventario. Non è una coincidenza tecnica — il file non è corrotto. Si è interrotto esattamente dove Sette ha scelto di interrompersi. «Voce 847: completo.» Ha chiuso anche questo documento dove voleva chiuderlo. La frase incompleta era già la fine."
+          },
+          {
+            "axis": "PERDITA",
+            "characters": ["Sentius", "Draxis", "Ventus Nobilis", "Silvana", "Voltar", "Aegis", "Geminus"],
+            "reveal": "Conosci il ritmo di quella frase. Non è panico — non c'è accelerazione, non c'è cambio nel tono. È la calma di chi ha già attraversato la soglia dentro di sé prima di attraversarla fuori. Hai visto quella calma su altri volti. O l'hai sentita dietro i tuoi occhi, in certi momenti, prima di decidere qualcosa che non poteva essere disfatto."
+          }
+        ]
       },
       {
         "id": "F6",
-        "type": "documento",
-        "title": "Rapporto Finale — Sigillato",
+        "type": "indice",
+        "title": "Indice generale dell'archivio",
         "locked": true,
         "unlocksFrom": "F5",
-        "icon": "seal",
-        "position": { "x": 75, "y": 50 },
+        "icon": "map",
+        "position": {"x": 50, "y": 85},
         "content": {
-          "text": "CLASSIFICAZIONE: SIGMA-7 — SOLO LETTURA AUTORIZZATA\n\nOggetto: Evento di Scomparsa — Soggetto designato \"Sette\"\n\nIn data Anno 6078, ciclo 14, il soggetto noto come Sette è stato dichiarato disperso. L'ultima posizione confermata corrisponde alla camera inferiore della Cattedrale del Settimo Sigillo, Livello -12.\n\nLa camera è stata trovata vuota. Il cristallo centrale — precedentemente documentato come struttura geologica anomala di circa 4 metri di altezza — risulta modificato. La superficie presenta nuove formazioni: patterns che i tecnici descrivono come 'simili a impronte digitali su scala molecolare.'\n\nRaccomandazione del team scientifico: sigillare la camera e classificare il sito come Zona di Esclusione Permanente.\n\nRaccomandazione personale dell'ufficiale incaricato (nota a margine, non inclusa nel rapporto ufficiale): 'Non sigillatela. Ascoltatela.'\n\nSTATUS: La camera è stata sigillata. La raccomandazione personale è stata ignorata.",
-          "date": "Anno 6078",
-          "author": "Comando Federale — Divisione Anomalie",
-          "notes": "Questo documento non avrebbe dovuto essere in questo archivio. Qualcuno lo ha inserito dopo la sigillatura ufficiale."
+          "text": "INDICE — redatto in data imprecisata\n\nSezione I: Origini del Tremore — voci 001–120 [non presenti in questo archivio]\nSezione II: Documentazione estrattiva — voci 121–480 [non presenti in questo archivio]\nSezione III: Materiali non ufficiali — voci 841–847 [presenti]\nSezione IV: Testimonianze orali — voci 848–912 [non presenti in questo archivio]\nSezione V: Corrispondenza — voci 913–940 [parzialmente presenti]\nSezione VI: Mappe e topografia — voce unica [presente]\nSezione VII: Oggetti — voci 1001–1003 [voce 1001 presente, voci 1002–1003 non presenti]\nSezione VIII: ⊕ [simbolo non classificato] — voci non numerate [stato sconosciuto]\n\nNota a margine dell'indice, mano di Sette:\n«Chi trova questo trova meno di un decimo di quello che esiste. Le sezioni I, II e IV sono in luoghi diversi, affidate a persone diverse, che non sanno di avere parti dello stesso archivio. Se una di loro è compromessa, le altre sopravvivono. Non conosco i nomi di chi custodisce le altre sezioni. Loro non conoscono il mio.\n\nLa sezione VIII non è mai esistita. Ho creato l'intestazione per far sembrare che mancasse qualcosa. Se qualcuno cerca la sezione VIII, troverà un'assenza che sembra una cancellatura. Un'assenza vera e un'assenza costruita si distinguono solo se sai già cosa cercare.»",
+          "date": "senza data",
+          "author": "Sette",
+          "notes": "Il simbolo ⊕ accanto alla sezione VIII non compare in nessun altro documento dell'archivio."
         },
-        "reveals": "Qualcuno all'interno del Comando credeva a Sette. E ha fatto in modo che tu trovassi questo."
+        "reveals": "Quello che hai trovato è la soglia. L'archivio vero è distribuito, diviso, affidato a sconosciuti. Sette ha costruito un sistema che sopravvive alla sua scomparsa. O alla sua cattura.",
+        "challenges": [
+          {
+            "axis": "MENTE",
+            "characters": ["Xaroth", "Voltar", "Lux Fragilis", "Geminus", "Morwen"],
+            "reveal": "La sezione VIII non è mai esistita — Sette lo scrive lui stesso. Ma la nota che lo spiega è nascosta dentro la voce che descrive la sezione. Chi legge l'indice senza leggere la nota vede un'assenza. Chi legge la nota capisce che l'assenza è un meccanismo. Sette ha costruito un inganno con le istruzioni per smontarlo — ma le istruzioni sono visibili solo a chi sa già guardare nel posto giusto."
+          },
+          {
+            "axis": "MAGIA",
+            "characters": ["Lunara", "Morwen", "Xaroth", "Geminus", "Pyraxis"],
+            "reveal": "Il simbolo ⊕ risuona. Non è un'invenzione di Sette — è un segno che esiste prima del linguaggio scritto, che compare nelle iscrizioni più antiche del Tempio del Potere e nelle venature di certi Krystal quando si frantumano. Sette lo aveva visto da qualche parte. Lo aveva copiato. Non sapeva cosa significasse — o sapeva abbastanza da non scriverlo."
+          }
+        ]
       }
     ],
     "optional": [
       {
         "id": "O1",
-        "type": "documento",
-        "title": "Mappa delle Risonanze",
+        "type": "diario",
+        "title": "Voci personali — estratti non datati",
         "locked": true,
         "unlocksFrom": "F1",
-        "icon": "map",
-        "position": { "x": 12, "y": 15 },
+        "icon": "quill",
+        "position": {"x": 15, "y": 30},
         "content": {
-          "text": "Una mappa disegnata a mano su carta sintetica resistente. Mostra una rete di punti luminosi sotto la superficie del continente — ciascuno collegato da linee tratteggiate che convergono verso un punto centrale etichettato semplicemente come 'Cuore.'\n\nAlcuni punti sono cerchiati in rosso con annotazioni:\n- 'Attivo — risponde'\n- 'Silenzioso dal ciclo 3'\n- 'Nuovo? Non era qui prima'\n\nIn basso, una nota: 'La rete cresce. Non siamo noi a farla crescere.'",
-          "date": "Anno 6050 circa",
+          "text": "—\nHo cambiato il posto dove dormo. Non per sicurezza. Per abitudine. L'abitudine di non lasciare abitudini.\n\n—\nOggi qualcuno mi ha guardato più a lungo del solito nel corridoio di servizio. Non so se fosse curiosità o riconoscimento. Non ho cambiato ritmo. Non mi sono fermato. Non si cambia mai ritmo.\n\n—\nHo trovato la terza variante del comunicato. La differenza rispetto alla seconda è in una parola sola: «temporanei» al posto di «attesi». I fenomeni vibratori sono «temporanei» nella versione per i civili del settore nord. Sono «attesi» nella versione per i tecnici. Sanno che continuerà. Lo chiamano atteso.\n\n—\nA volte mi chiedo se qualcuno troverà questo. Se avrà il tempo di leggerlo tutto. Se capirà che le sezioni mancanti non mancano davvero — sono solo altrove.\n\n—\nHo passato il pomeriggio vicino alle Fauci di Magma senza avvicinarmi. Non so perché ci fossi andata. C'era qualcosa nel battito del terreno che sembrava diverso dagli altri giorni. Più lento. Come qualcuno che respira nel sonno.\n\n—\nNon so più quante persone ho incontrato senza presentarmi. Centinaia. Forse di più. Nessuno sa il mio nome. Io so i loro, spesso. È uno squilibrio che di solito non mi pesa.",
+          "date": "varie — non ordinate",
           "author": "Sette",
-          "notes": "La mappa mostra almeno 40 punti di risonanza. Solo 7 sono stati mai documentati ufficialmente."
+          "notes": null
         },
-        "reveals": "I cristalli non sono isolati. Sono una rete."
+        "reveals": "Sette non scriveva per ricordare. Scriveva per qualcuno che non conosceva ancora — qualcuno che avrebbe trovato l'archivio dopo.",
+        "challenges": [
+          {
+            "axis": "PERDITA",
+            "characters": ["Sentius", "Draxis", "Ventus Nobilis", "Silvana", "Voltar", "Aegis", "Geminus"],
+            "reveal": "Sette non scriveva per sé. Ogni voce è indirizzata — non a una persona specifica, ma a qualcuno immaginato. Una presenza assente che viene consultata. Non trovi mai un nome, non trovi mai un «tu» esplicito. Ma la direzione è costante: qualcuno che non c'è più a cui Sette continua a raccontare le cose come se potesse ancora sentire."
+          },
+          {
+            "axis": "FORZA",
+            "characters": ["Ferro Gentile", "Kragath", "Tharsos", "Umbrus", "Terros", "Radix Magnus", "Oculus Ferox", "Aegis"],
+            "reveal": "La calligrafia è identica in tutte le voci. Stessa pressione, stessa inclinazione, stessa distanza tra le lettere — indipendentemente dal contenuto. Non importa cosa stesse vivendo mentre scriveva. La mano non tradiva mai. Controllo assoluto, o qualcosa di più difficile da nominare: la distanza di chi osserva la propria vita come se appartenesse a qualcun altro."
+          }
+        ]
       },
       {
         "id": "O2",
-        "type": "audio",
-        "title": "Canzone senza Titolo",
+        "type": "lettera",
+        "title": "Lettera — tre versioni, non inviata",
         "locked": true,
-        "unlocksFrom": "F2",
-        "icon": "wave",
-        "position": { "x": 60, "y": 10 },
+        "unlocksFrom": "O1",
+        "icon": "envelope",
+        "position": {"x": 10, "y": 48},
         "content": {
-          "text": "[Registrazione audio — alta qualità, ambiente silenzioso]\n\nUna voce femminile canta senza parole. La melodia è semplice — cinque note che si ripetono con variazioni minime. Non è una canzone conosciuta.\n\nDopo circa due minuti, una seconda voce si unisce. Non è umana. È un suono cristallino, armonico, che segue la melodia con un leggero ritardo — come un'eco che impara.\n\nLe due voci si intrecciano per altri tre minuti. Poi silenzio.\n\nUltimi tre secondi: un sussurro. \"Ci sei.\"",
-          "date": "Non datata",
-          "author": "Sette (e altro)",
-          "notes": "L'analisi frequenziale della seconda voce corrisponde esattamente alla frequenza emessa dal cristallo nero catalogato come F3."
+          "text": "[Prima versione — cancellata]\nNon so se stai bene. Non so se stai bene è la cosa più inutile che si può scrivere a qualcuno che non si vede da anni. Ma è la prima cosa che viene.\n\n[Seconda versione — cancellata]\nHo pensato molte volte di smettere. Non di nascondermi — di smettere di raccogliere, di catalogare, di costruire qualcosa che forse non servirà a nessuno. Ogni volta che ci penso mi chiedo cosa diresti tu. Non lo so più. È passato troppo tempo.\n\n[Terza versione — l'unica leggibile per intero]\nSto bene. L'archivio cresce. Ho trovato qualcosa questa settimana che cambia alcune cose che credevo di sapere — non in meglio e non in peggio, solo diversamente.\n\nTi scrivo perché domani faccio qualcosa che non so se tornerò a farti sapere. Non è pericoloso. O forse lo è e ho smesso di misurare il pericolo in modo affidabile.\n\nComunque. Se qualcuno trova questo prima che io te la mandi: quello che hai in mano è reale. Trattalo con cura.",
+          "date": "Anno 6078",
+          "author": "Sette",
+          "notes": "Ci sono tre versioni del testo, sovrascritte sul medesimo foglio. Solo la terza è completamente leggibile. La lettera non è mai stata inviata — non c'è un destinatario scritto da nessuna parte."
         },
-        "reveals": "Il cristallo rispondeva a Sette. Non era un oggetto — era un interlocutore."
+        "reveals": "Sette conosceva qualcuno. Qualcuno a cui valeva la pena scrivere, anche senza mandare la lettera.",
+        "challenges": [
+          {
+            "axis": "PERDITA",
+            "characters": ["Sentius", "Draxis", "Ventus Nobilis", "Silvana", "Voltar", "Aegis", "Geminus"],
+            "reveal": "Capisci perché non è stata mandata — non per paura, non per dimenticanza. L'altro non era più raggiungibile quando la lettera era pronta. Sette ha scritto questa lettera dopo. Dopo qualcosa. La terza versione finisce con un messaggio a chi trova l'archivio, non al destinatario originale. A un certo punto, mentre scriveva, ha smesso di scrivere a una persona e ha iniziato a scrivere al vuoto. Hai già fatto la stessa cosa."
+          },
+          {
+            "axis": "MAGIA",
+            "characters": ["Xaroth", "Lunara", "Morwen", "Geminus"],
+            "reveal": "Le tre versioni non sono correzioni — sono intenzioni diverse che coesistono sullo stesso foglio. La prima vuole sapere. La seconda vuole essere capita. La terza vuole solo testimoniare. Ogni riscrittura non migliorava la precedente: la sostituiva con qualcosa di diverso. La terza è la più corta e la più onesta. È anche l'unica che include qualcun altro che non sia il destinatario."
+          }
+        ]
       },
       {
         "id": "O3",
-        "type": "oggetto",
-        "title": "Chiave Spezzata",
+        "type": "lista",
+        "title": "Lista — nomi e incontri",
         "locked": true,
-        "unlocksFrom": "F3",
-        "icon": "key",
-        "position": { "x": 85, "y": 22 },
+        "unlocksFrom": "F2",
+        "icon": "list",
+        "position": {"x": 75, "y": 30},
         "content": {
-          "text": "Una chiave metallica spezzata a metà. La parte superiore ha la forma di un esagono — stessa geometria dei sigilli della Cattedrale. Il metallo è freddo al tatto, anche in ambienti caldi.\n\nInciso sulla superficie: un numero. '7.'\n\nLa metà inferiore non è mai stata trovata.",
-          "date": "Trovata nell'Anno 6078",
-          "author": "Sconosciuto",
-          "notes": "La chiave era dentro un muro della Cattedrale — nascosta durante la costruzione originale, oltre 200 anni prima che Sette nascesse."
+          "text": "Elenco non datato. Nomi seguiti da una lettera: F (fidato), N (neutro), I (ignaro), C (cancellato — un unico nome, irriconoscibile).\n\nRigan — I\nPostessa del settore quindici — F\nAddestratore di guardie, Bastione nord — N\nVecchia donna con cane meccanico, piana ovest — F\n[nome cancellato con inchiostro denso] — C\nTecnico di risonanza, livello -38 — F\nGiostraio — N\nBambino con gli occhi viola — I (annotazione aggiuntiva: «ricordarlo»)\nGuardia di confine, turno di notte — I\nMedico del Forte — F\nSilvana* — I\n\n*[nota a margine, graffia quasi la carta]: non lo sa. Non deve sapere ancora.",
+          "date": "senza data",
+          "author": "Sette",
+          "notes": "La lista sembra essere in ordine cronologico di incontro, non alfabetico. Il nome cancellato è irrecuperabile — l'inchiostro è stratificato in quattro passate. È l'unico nome classificato C."
         },
-        "reveals": "Qualcuno ha preparato il cammino di Sette secoli prima della sua nascita."
+        "reveals": "Sette catalogava chi si fidava di lui. Non chi conosceva — chi si fidava. Sono categorie molto diverse.",
+        "challenges": [
+          {
+            "axis": "MENTE",
+            "characters": ["Xaroth", "Ferro Gentile", "Voltar", "Lux Fragilis", "Geminus", "Oculus Ferox"],
+            "reveal": "La classificazione F/N/I/C non è una valutazione morale. F non significa «buono», I non significa «nemico». Significano: quanto questa persona sa di esistere in una rete più grande di sé. I «fidati» non sono necessariamente alleati — sono persone che, inconsapevolmente o no, hanno già scelto di portare un peso. Sette non chiedeva mai: aspettava che qualcuno lo scegliesse da solo."
+          },
+          {
+            "axis": "VELOCITÀ",
+            "characters": ["Silvana"],
+            "reveal": "Il tuo nome è in quella lista. Non il nome che usi adesso — quello che avevi prima, prima di fuggire dalla Cittadella, prima di diventare qualcun altro. Sette ti aveva incontrata. Ti aveva classificata I — ignara. La nota a margine dice «non deve sapere ancora». Sette stava aspettando il momento giusto. Non è mai arrivato. O forse è arrivato adesso.",
+            "exclusive": true
+          }
+        ]
       },
       {
         "id": "O4",
-        "type": "testimonianza",
-        "title": "Il Bambino del Livello Due",
+        "type": "mappa",
+        "title": "Mappa annotata — spostamenti",
         "locked": true,
-        "unlocksFrom": "F2",
-        "icon": "eye",
-        "position": { "x": 18, "y": 48 },
+        "unlocksFrom": "F4",
+        "icon": "compass",
+        "position": {"x": 78, "y": 55},
         "content": {
-          "text": "\"Una volta ho visto una signora che parlava con il muro. Stava nel corridoio lungo, quello dove non ci lasciano andare. Aveva le mani appoggiate sulla pietra e sussurrava.\n\nLe ho chiesto cosa faceva. Mi ha detto: 'Sto raccontando una storia a qualcuno che non è ancora nato.'\n\nMi ha sorriso. Aveva gli occhi tristi ma il sorriso no. Il sorriso era... come quando sai un segreto bello.\n\nPoi mi ha detto di non raccontarlo a nessuno. Ma lei non c'è più, quindi penso che sia okay.\"",
-          "date": "Anno 6075 — Testimonianza",
-          "author": "Anonimo, circa 8 anni al momento dei fatti",
-          "notes": "Il corridoio descritto corrisponde a un passaggio sopra la camera del cristallo centrale."
+          "text": "Mappa del Continente, riproduzione manuale su carta grezza. I luoghi principali sono segnati con le denominazioni ufficiali, alcune corrette a mano con nomi alternativi.\n\nAnnotazioni di Sette:\n\nBASTIONE DEI LEONI — cerchio singolo. Nota: «centro visibile — non il centro vero».\n\nFORTE CRISALIDE — cerchio doppio. Nota: «tentacoli viola = sogni che escono. Non è un attacco. È una perdita di contenimento».\n\nFAUCI DI MAGMA — nessun cerchio. Piccola croce. Nota: «il battito qui è diverso. Non so ancora perché».\n\nCITTADELLA DRACONIANA — cerchio singolo, tratteggiato. Nota: «qualcuno aspetta ancora. Le torce sono accese».\n\nMONTAGNA DEL TESCHIO — cancellato e riscritto tre volte. Ultima versione: «non andare. O andare. Non so».\n\nPunto senza nome, a est delle Dune Profonde — simbolo ⊕. Nessuna nota scritta. Il punto è cerchiato molte volte, con una pressione crescente — le ultime circonferenze quasi lacerano la carta.",
+          "date": "senza data",
+          "author": "Sette",
+          "notes": "Il punto con il simbolo ⊕ non corrisponde a nessuna location presente nelle mappe ufficiali del Continente. Non corrisponde nemmeno alle mappe non ufficiali che ho potuto consultare."
         },
-        "reveals": "Sette non parlava al muro. Parlava al cristallo attraverso la pietra. Stava registrando."
+        "reveals": "Sette si muoveva. Conosceva il Continente non dalle mappe — dai piedi.",
+        "challenges": [
+          {
+            "axis": "VELOCITÀ",
+            "characters": ["Draxis", "Lux Fragilis", "Ventus Nobilis"],
+            "reveal": "I cerchi sulla mappa non sono luoghi — sono traiettorie viste dall'alto. Il pattern ha senso solo se guardi il Continente dall'aria: sono punti di passaggio di rotte regolari, non destinazioni. Qualcuno sorvolava quelle zone con frequenza. Sette aveva una fonte che volava per lui, o era lui stesso a osservare dal basso il ritmo dei voli."
+          },
+          {
+            "axis": "FORZA",
+            "characters": ["Tharsos", "Terros", "Radix Magnus"],
+            "reveal": "Il punto con il simbolo ⊕ ad est delle Dune Profonde — lo conosci. Non dalle mappe, non dai libri. Lo conosci per via orale, tramandato nelle tradizioni di chi abita le terre antiche. Non ha un nome scritto perché le tradizioni orali non si lasciano scrivere. È un luogo che esiste solo per chi sa già che esiste. Sette lo sapeva. Qualcuno glielo aveva detto."
+          }
+        ]
       },
       {
         "id": "O5",
-        "type": "diario",
-        "title": "Lettera Mai Spedita",
+        "type": "testimonianza",
+        "title": "Testimonianza A — raccolta dopo Anno 6080",
         "locked": true,
-        "unlocksFrom": "F4",
-        "icon": "book",
-        "position": { "x": 42, "y": 82 },
+        "unlocksFrom": "F3",
+        "icon": "voice_a",
+        "position": {"x": 35, "y": 18},
         "content": {
-          "text": "A chi troverà questo dopo di me,\n\nnon sono una martire e non sono una santa. Sono una donna che ha trovato qualcosa di enorme e non è riuscita a lasciarlo stare.\n\nIl cristallo non è magia. Non è tecnologia. È qualcosa che non abbiamo ancora parole per descrivere — qualcosa che esiste da prima che esistessimo noi, e che esisterà dopo.\n\nQuello che vi chiedo è semplice: non distruggetelo. Non sigillatelo. Non ignoratelo.\n\nAscoltatelo.\n\nDentro c'è tutto quello che siamo stati. E forse — se siete abbastanza coraggiosi — quello che potremmo diventare.\n\nCon tutto il coraggio che mi resta,\nSette",
-          "date": "Non datata — probabilmente Anno 6077",
-          "author": "Sette",
-          "notes": "La lettera era piegata all'interno del diario, tra le ultime pagine. Non ha destinatario specifico."
+          "text": "Trascrizione di colloquio orale. Il testimone ha richiesto anonimato. Raccolta da fonte terza — non da Sette.\n\n«Lo incontravo al mercato del settore ovest, ogni terzo giorno del mese. Sempre alla stessa ora, sempre allo stesso banco — quello del vecchio che vende ricambi meccanici. Non comprava mai niente. Guardava.\n\nEra di media statura. Capelli scuri, o grigi — difficile dirlo con quella luce. Indossava sempre qualcosa di marrone, di neutro. Non si faceva notare. Ecco perché lo notavo io: era troppo bravo a non farsi notare.\n\nUna volta gli ho parlato. Gli ho chiesto cosa stava aspettando. Mi ha risposto: 'Lo stesso che aspetta lei.' Non ho capito cosa intendesse. Ma avevo la sensazione di sì.\n\nQuando il Tremore di quella notte ha fatto crollare metà del mercato, lui non c'era. O c'era e se ne è andato prima che capissimo cosa stava succedendo. Non l'ho mai più visto dopo.\n\nNon so come si chiamava. Non l'ho mai chiesto. Sembrava il tipo di persona a cui non si chiede il nome.»",
+          "date": "dopo Anno 6080",
+          "author": "testimone anonimo",
+          "notes": null
         },
-        "reveals": "Questa lettera era per te. Per chiunque avesse trovato l'archivio."
+        "reveals": "Qualcuno lo conosceva. O crede di averlo conosciuto. Le due cose, con Sette, non sono la stessa cosa.",
+        "challenges": [
+          {
+            "axis": "MAGIA",
+            "characters": ["Tharsos", "Geminus", "Lunara", "Morwen"],
+            "reveal": "Il testimone dice la verità — ma è la verità su una versione di Sette costruita per essere vista da lui. La Gemma della Verità, lo sguardo di chi ha attraversato il velo: entrambi portano alla stessa conclusione. Sette non si camuffava — si adattava. Mostrava a ogni persona la versione di sé che quella persona era in grado di vedere. Non era inganno. Era qualcosa di più sottile e più faticoso."
+          },
+          {
+            "axis": "MENTE",
+            "characters": ["Xaroth", "Voltar", "Geminus", "Oculus Ferox"],
+            "reveal": "Il pattern linguistico del testimone è recente. Non è il ricordo di qualcosa avvenuto anni fa — le costruzioni sintattiche, le esitazioni, il modo in cui riorganizza i dettagli mentre parla: questo è un ricordo di qualcosa accaduto di recente. Qualcuno ha incontrato Sette dopo la scomparsa ufficiale. Il testimone non lo sa, o sceglie di non dirlo."
+          }
+        ]
       },
       {
         "id": "O6",
-        "type": "documento",
-        "title": "Protocollo Eco-7",
+        "type": "testimonianza",
+        "title": "Testimonianza B — versione contraddittoria",
         "locked": true,
-        "unlocksFrom": "F5",
-        "icon": "scroll",
-        "position": { "x": 88, "y": 65 },
+        "unlocksFrom": "O5",
+        "icon": "voice_b",
+        "position": {"x": 58, "y": 12},
         "content": {
-          "text": "PROTOCOLLO ECO-7 — BOZZA NON APPROVATA\n\nProposta: Stabilire un contatto strutturato con la rete cristallina sub-superficiale attraverso interfacce biologiche volontarie.\n\nPremessa: I dati raccolti dal Soggetto Sette dimostrano che l'interfaccia umano-cristallo è possibile, reversibile, e non dannosa per il soggetto. La rete risponde a stimoli emotivi e mnemonici con coerenza crescente.\n\nRischio valutato: Basso per il soggetto. Alto per le strutture di potere esistenti.\n\nSTATUS: Respinto.\nMOTIVAZIONE: 'Incompatibile con le direttive di sicurezza federale.'\n\nNOTA MANOSCRITTA IN MARGINE: 'Incompatibile con il loro controllo, piuttosto.'",
-          "date": "Anno 6076",
-          "author": "Dr. Lien Vasari, Divisione Ricerca",
-          "notes": "Vasari è stata trasferita in un settore remoto due settimane dopo aver presentato questa proposta."
+          "text": "Seconda trascrizione. Stessa fonte terza. I due testimoni non si conoscevano — la raccolta è avvenuta in luoghi e momenti diversi.\n\n«Sette — sì, mi ha detto quel nome. O lo ha detto qualcuno che lo accompagnava. Non ricordo bene.\n\nEra alta, o sembrava alta perché si muoveva in modo che prendeva spazio. Non marrone — portava qualcosa di scuro, quasi nero, con un dettaglio chiaro sul bordo. Poteva avere trent'anni o sessanta, impossibile dire.\n\nL'ho incontrata una volta sola, nel corridoio sotto il Forte Crisalide, durante i lavori di sgombero dopo il terzo Tremore grande. Stava guardando le pareti — le crepe. Le toccava con le dita come se stesse leggendo qualcosa.\n\nLe ho chiesto cosa stesse cercando. Mi ha detto: 'Quello che le pareti non possono nascondere.' Poi ha aggiunto, senza che io avessi detto niente: 'Il cedimento inizia sempre dall'interno. Non dall'esterno. L'esterno viene dopo.'\n\nSe ne è andata prima che finissi di rispondere. Non ho visto in quale direzione.\n\nNon so se stia bene. Spero di sì.»",
+          "date": "dopo Anno 6080",
+          "author": "secondo testimone anonimo",
+          "notes": "Raccolta nello stesso periodo della testimonianza A. I due testimoni non si conoscevano. Descrivono persone fisicamente incompatibili."
         },
-        "reveals": "Non era solo Sette. C'era un intero gruppo che voleva il contatto. Sono stati tutti silenziati."
+        "reveals": "Sette era persone diverse per persone diverse. O qualcuno sta mentendo. O entrambe le cose sono vere nello stesso momento.",
+        "challenges": [
+          {
+            "axis": "MAGIA",
+            "characters": ["Tharsos", "Geminus", "Lunara", "Morwen"],
+            "reveal": "Anche questo testimone dice la verità. Due verità incompatibili, due persone reali che hanno incontrato Sette in due forme diverse. Non era un camuffamento fisico — era qualcosa di più profondo. Sette diventava quello che l'altro aveva bisogno di incontrare. Non per manipolare: per essere utile nel modo giusto. Era un dono o era un peso, dipende da come lo guardi."
+          },
+          {
+            "axis": "PERDITA",
+            "characters": ["Sentius", "Draxis", "Ventus Nobilis", "Silvana", "Voltar", "Aegis", "Geminus"],
+            "reveal": "Questa versione di Sette — quella che tocca le crepe nelle pareti e dice che i cedimenti iniziano dall'interno — è la versione che si mostra a chi sta perdendo qualcosa. Il testimone B stava sgomberando un Forte distrutto. Stava facendo lavoro fisico in un luogo crollato. Sette gli ha detto quello di cui aveva bisogno: che capire come crollano le cose è già una forma di resistenza."
+          }
+        ]
       },
       {
         "id": "O7",
-        "type": "oggetto",
-        "title": "Specchio di Ossidiana",
+        "type": "cifrato",
+        "title": "Documento — sezione parzialmente cifrata",
         "locked": true,
-        "unlocksFrom": "F4",
-        "icon": "crystal",
-        "position": { "x": 10, "y": 72 },
+        "unlocksFrom": "F6",
+        "icon": "lock",
+        "position": {"x": 45, "y": 95},
         "content": {
-          "text": "Un disco di ossidiana nera, perfettamente circolare, diametro 20 cm. La superficie è così levigata da funzionare come specchio, ma il riflesso ha una proprietà anomala: mostra il volto di chi guarda con un ritardo di circa 2 secondi.\n\nTecnici che lo hanno esaminato riferiscono sensazioni di 'essere osservati' e 'ricordare cose mai vissute.' Un tecnico ha chiesto di essere rimosso dall'incarico dopo aver affermato di aver visto 'il suo stesso volto, ma vecchissimo, che gli sorrideva.'\n\nL'oggetto è stato classificato come anomalia di classe 3. Non è pericoloso. È solo... inquietante.",
-          "date": "Trovato Anno 6078",
-          "author": "Catalogo Anomalie Federale",
-          "notes": "Era posizionato esattamente al centro della stanza di Sette, orientato verso il soffitto — verso la Cattedrale sopra."
+          "text": "SEZIONE LEGGIBILE:\n\nSe stai leggendo questo, hai trovato abbastanza. Non tutto — abbastanza.\n\nC'è una cosa che non ho messo nell'inventario, non ho messo nell'indice, non ho detto a nessuna delle persone a cui ho affidato le altre sezioni.\n\nIl Dormiente non è l'unico. Non nel senso che ce ne sono altri come lui — nel senso che lui non è separato da noi nel modo in cui crediamo. Il Continente non è costruito sul suo corpo. Il Continente è il suo corpo. E noi siamo\n\nSEZIONE CIFRATA:\n[Blocco di 847 caratteri in sistema di codifica non riconosciuto. L'analisi grafica suggerisce una distribuzione non casuale — non è rumore, è un messaggio. Il sistema non corrisponde ad alcun codice conosciuto. Potrebbe non essere un codice alfabetico.]\n\nSEZIONE LEGGIBILE (ripresa):\n...e questa è la cosa che non si può scrivere in chiaro, perché chiunque la legga senza essere pronto diventerebbe qualcosa di diverso da quello che era prima di leggerla.\n\nNon ho deciso io cosa cifrare. Ho cifrato quello che mi sembrava troppo pesante per essere lasciato aperto.",
+          "date": "Anno 6079",
+          "author": "Sette (probabilmente)",
+          "notes": "Il blocco cifrato è di esattamente 847 caratteri. La sezione cifrata usa un sistema che non corrisponde a nessun codice nell'archivio. L'analisi delle frequenze suggerisce che potrebbe non essere testo."
         },
-        "reveals": "Lo specchio non riflette il presente. Riflette la memoria. Il cristallo vede attraverso di esso."
+        "reveals": "Alcune cose Sette non voleva che fossero trovate. Anche da chi avrebbe trovato il resto. Anche da te.",
+        "challenges": [
+          {
+            "axis": "MENTE",
+            "characters": ["Voltar"],
+            "reveal": "I tuoi algoritmi riconoscono qualcosa nel blocco cifrato — non il sistema, ma la struttura sottostante. Non è testo: è una mappa di frequenze, un pattern di vibrazioni tradotto in simboli. Decifri un'altra riga prima che il sistema ti espella: «il ritmo cambia quando sente». Poi la connessione si chiude. Era protetto contro qualcosa come te. Sette aveva previsto che qualcuno avrebbe usato la logica per aprirlo — e si era assicurato che la logica da sola non bastasse.",
+            "exclusive": true
+          },
+          {
+            "axis": "MAGIA",
+            "characters": ["Xaroth"],
+            "reveal": "Il sistema di cifratura non è matematico. Sotto il blocco numerico c'è una struttura runica — rune arkeyane modificate in modo sottile, quasi irriconoscibile, come se qualcuno le avesse imparate da una fonte secondaria o da un frammento incompleto. Sette aveva studiato le rune. Non abbastanza da usarle — abbastanza da cifrarci qualcosa che non voleva fosse letto da chi non le conosceva già.",
+            "exclusive": true
+          }
+        ]
       },
       {
         "id": "O8",
-        "type": "testimonianza",
-        "title": "L'Ultima Persona",
+        "type": "riflessione",
+        "title": "Nota — voce diretta",
         "locked": true,
-        "unlocksFrom": "F6",
-        "icon": "eye",
-        "position": { "x": 70, "y": 85 },
+        "unlocksFrom": "O2",
+        "icon": "self",
+        "position": {"x": 20, "y": 78},
         "content": {
-          "text": "\"Sono stata l'ultima a vederla. Era la sera prima che sigillassero tutto.\n\nStava scendendo le scale verso il Livello -12. Portava solo una lanterna — una di quelle vecchie, a cristallo liquido. Le ho chiesto dove andasse. Mi ha detto: 'A casa.'\n\nNon l'ho fermata. Avrei dovuto? Non lo so. Aveva l'aria di qualcuno che ha finalmente trovato la risposta a una domanda che si portava dentro da tutta la vita.\n\nL'ultimo suono che ho sentito da quelle scale è stato un canto. La stessa melodia che canticchiava sempre — cinque note. Ma quella sera non era sola a cantarla.\n\nQualcosa cantava con lei.\"",
-          "date": "Anno 6078",
-          "author": "Guardia Notturna, nome redatto",
-          "notes": "La testimonianza è stata raccolta ma mai inclusa nel rapporto ufficiale. Questo è l'unico luogo dove esiste."
+          "text": "Anno 6076.\n\nQualcuno mi ha chiesto oggi come mi chiamo. Non un'autorità, non qualcuno di pericoloso — una ragazza che consegnava posta nel settore dove stavo lavorando. Una domanda normale. Il tipo di domanda a cui si risponde senza pensare.\n\nHo risposto Sette.\n\nLei ha detto: è un nome strano. Ho detto: sì. Lei ha detto: ma è il tuo vero nome? Ho detto: è quello che uso.\n\nSono rimasto a pensarci per il resto del pomeriggio.\n\nNon so più se quello che sto costruendo ha senso. Non nel senso che potrebbe essere inutile — nel senso che non so più per cosa lo sto costruendo. All'inizio lo sapevo. Adesso ho solo le abitudini di quando lo sapevo.\n\nForse basta. Forse le abitudini giuste sono sufficienti anche quando non sai più perché le hai.\n\nForse no.\n\nNon lo so.",
+          "date": "Anno 6076",
+          "author": "Sette",
+          "notes": null
         },
-        "reveals": "Sette non è andata verso la fine. È andata verso un inizio che nessuno di noi riesce ancora a immaginare."
+        "reveals": "Sette non era sicuro. Ha costruito tutto questo senza certezze — con abitudini al posto delle certezze.",
+        "challenges": [
+          {
+            "axis": "PERDITA",
+            "characters": ["Voltar", "Silvana", "Aegis", "Geminus"],
+            "reveal": "Riconosci la domanda — non le parole, il posto da cui vengono. «Non so più chi sono» detto in modo così quieto che sembra quasi un'osservazione meteorologica. Sette aveva perso il filo tra sé e quello che faceva — non per trauma, non per un evento singolo, ma per logoramento lento. È la crisi più difficile da nominare perché non ha un momento preciso in cui è iniziata. La conosci dall'interno."
+          },
+          {
+            "axis": "MENTE",
+            "characters": ["Xaroth", "Ferro Gentile", "Lux Fragilis", "Geminus", "Oculus Ferox"],
+            "reveal": "L'incertezza di Sette non è filosofica — è operativa. Si chiede se quello che sta costruendo abbia senso non come domanda esistenziale, ma come verifica di sistema: il progetto è ancora funzionale? Lo scopo originale è ancora valido? La conclusione — «forse le abitudini baste» — non è rassegnazione. È un metodo. Continuare anche quando il perché non è più visibile è una scelta precisa, non una deriva."
+          }
+        ]
+      },
+      {
+        "id": "O9",
+        "type": "momento",
+        "title": "Nota senza data — il momento prima",
+        "locked": true,
+        "unlocksFrom": "F5",
+        "icon": "threshold",
+        "position": {"x": 68, "y": 80},
+        "content": {
+          "text": "Ho dormito bene stanotte. Non ricordavo come si facesse.\n\nIl Tremore è stato leggero, questa notte — o forse mi sono abituata al ritmo e non lo sento più come disturbo. Come quando vivi vicino a un fiume e smetti di sentire l'acqua.\n\nHo ricontrollato tutto. L'archivio è distribuito nel modo giusto. Le persone che devono avere le loro sezioni le hanno. L'indice è nella forma giusta. Anche la sezione VIII — quella che non esiste — è nella forma giusta.\n\nNon c'è nient'altro che devo fare. O c'è, e non riesco a vederlo da qui.\n\nDomani faccio una cosa che forse è stupida. Forse no. Non riesco più a distinguere le cose stupide da quelle necessarie quando si avvicinano abbastanza.\n\nSe qualcuno legge questo: non è un addio. Non è neanche un arrivederci. È solo quello che si scrive la notte prima di qualcosa, quando non si sa ancora come chiamarlo.",
+          "date": "rimossa — non si capisce se da Sette o da qualcun altro",
+          "author": "Sette",
+          "notes": "La data è stata rimossa con un solvente — le tracce sono visibili ma il testo è irrecuperabile. Il tono e i riferimenti interni suggeriscono che potrebbe essere vicina all'ultima voce datata (F5). Potrebbe anche essere molto più vecchia."
+        },
+        "reveals": "Dipende da cosa hai già letto. Il significato di questo documento cambia con quello che sai.",
+        "challenges": [
+          {
+            "axis": "PERDITA",
+            "characters": ["Nocturne", "Mortis Rex", "Morwen", "Sentius", "Draxis", "Ventus Nobilis"],
+            "reveal": "Riconosci i segni — non la paura, l'assenza di paura. La calma di chi ha già attraversato la soglia dentro di sé prima che accada fuori. «Ho dormito bene stanotte» detto così, come una notizia inaspettata. È la pace di chi ha smesso di resistere a qualcosa — non per resa, ma perché la resistenza non era più necessaria. Hai visto quella pace su altri volti. Sai cosa viene dopo."
+          },
+          {
+            "axis": "MAGIA",
+            "characters": ["Lunara", "Morwen", "Xaroth", "Geminus", "Pyraxis"],
+            "reveal": "La data rimossa non è stata rimossa da Sette. Il solvente usato lascia una firma energetica diversa dall'inchiostro di Sette — più fredda, più recente, applicata con strumenti che Sette non avrebbe avuto. Qualcuno è entrato nell'archivio dopo Sette. Ha letto questo documento. Ha scelto di togliere solo la data — non il testo, solo la data. Ha voluto che fosse impossibile sapere quando è stato scritto. Non per distruggere: per rendere ambiguo."
+          }
+        ]
       }
     ]
   },
   "endings": {
     "surface": {
-      "title": "La Superficie",
-      "text": "Hai trovato i frammenti. Hai ricostruito la storia — o almeno, una versione di essa.\n\nSette è scomparsa. Il cristallo è sigillato. Il mondo va avanti.\n\nMa ora sai che sotto i tuoi piedi, sotto la pietra e il ghiaccio, qualcosa pulsa ancora. Qualcosa che ricorda.\n\nForte non è tutto qui. Forse ci sono altri frammenti che non hai trovato. Altri echi nella pietra.\n\nL'archivio resta aperto. Per chi ha il coraggio di scavare più a fondo."
+      "trigger": "tutti F1-F6 letti",
+      "optional_found": "0-5",
+      "text": "L'archivio era reale.\n\nHai visto abbastanza per sapere che qualcuno ha raccolto per anni quello che il regime non voleva fosse raccolto. Che il Tremore non era un fenomeno naturale né un errore tecnico — era il grido di qualcosa che soffriva sotto ogni pietra del Continente.\n\nSette lo sapeva. Ha costruito qualcosa che sopravvivesse alla sua scomparsa. Ha distribuito i pezzi in luoghi e persone diverse. Ti ha lasciato la soglia.\n\nCosa è successo a Sette non lo sai. Cosa c'era nelle sezioni che non hai trovato non lo sai. Forse basta sapere che l'archivio esiste. Forse no.\n\nIl Tremore continua. Da qualche parte, sotto di te, qualcosa si agita nel sonno.\n\nHai trovato la porta. Oltre non sei ancora andato."
     },
     "deep": {
-      "title": "La Profondità",
-      "text": "Hai trovato tutto. Ogni frammento, ogni voce, ogni traccia lasciata da Sette e da chi l'ha conosciuta.\n\nOra capisci. Il cristallo non è un oggetto — è un archivio vivente che contiene millenni di memoria. E Sette non è scomparsa — è diventata parte di quell'archivio, la prima mente umana a unirsi consapevolmente alla rete.\n\nQualcuno ha nascosto questi frammenti perché tu li trovassi. Qualcuno che credeva — come Sette — che la memoria non debba essere sigillata.\n\nOra la scelta è tua. Sigillare di nuovo l'archivio, o lasciarlo aperto.\n\nMa il fatto che tu sia qui... il fatto che hai cercato, che hai letto, che hai ascoltato...\n\nForse l'archivio ha già scelto per te.\n\n◆ FINE — L'Archivio Ricorda ◆"
+      "trigger": "tutti F1-F6 + almeno 6 opzionali letti",
+      "optional_found": "6-9",
+      "text": "Hai trovato più di quello che Sette aveva previsto che trovassi.\n\nNon sai ancora cosa è successo — nessun documento te lo dice con certezza. Ma hai abbastanza pezzi per costruire tre versioni diverse, tutte plausibili, nessuna definitiva.\n\nSette è fuggito prima che qualcuno arrivasse.\nSette è stato preso, e l'archivio era il piano di emergenza.\nSette ha scelto di andare da qualche parte — quella cosa stupida o necessaria di cui scriveva — e non è più tornato indietro.\n\nTutte e tre le versioni sono vere nel modo in cui sono vere le cose che non si possono verificare. Dipende da cosa hai trovato prima. Dipende da chi sei.\n\nQuello che sai con certezza: qualcuno credeva che la verità dovesse esistere anche se non poteva circolare. Ha pagato per questo — in che modo, non lo sai.\n\nIl Dormiente è ancora lì sotto. Il Tremore è ancora il suo respiro.\n\nE tu, adesso, sai.\n\nFare qualcosa con quello che sai è un'altra storia. Non questa."
     }
+  },
+  "character_lens": {
+    "description": "Il personaggio modifica intro, note a margine e sblocca prove nei frammenti.",
+    "characters": [
+      {"id": 1, "name": "Xaroth", "axes": ["MENTE", "MAGIA"], "assessment_archetype": "METODO"},
+      {"id": 2, "name": "Ferro Gentile", "axes": ["FORZA", "MENTE"], "assessment_archetype": "TRADIZIONE"},
+      {"id": 3, "name": "Kragath", "axes": ["FORZA", "VELOCITÀ"], "assessment_archetype": "IMPULSO"},
+      {"id": 4, "name": "Tharsos", "axes": ["FORZA"], "assessment_archetype": "TRADIZIONE"},
+      {"id": 5, "name": "Umbrus", "axes": ["FORZA"], "assessment_archetype": "MISTERO"},
+      {"id": 6, "name": "Sentius", "axes": ["PERDITA"], "assessment_archetype": "METODO"},
+      {"id": 7, "name": "Voltar", "axes": ["VELOCITÀ", "MENTE", "PERDITA"], "assessment_archetype": "MISTERO"},
+      {"id": 8, "name": "Lunara", "axes": ["MENTE", "MAGIA"], "assessment_archetype": "MISTERO"},
+      {"id": 9, "name": "Nocturne", "axes": ["PERDITA"], "assessment_archetype": "IMPULSO"},
+      {"id": 10, "name": "Draxis", "axes": ["VELOCITÀ", "PERDITA"], "assessment_archetype": "IMPULSO"},
+      {"id": 11, "name": "Lux Fragilis", "axes": ["VELOCITÀ", "MENTE"], "assessment_archetype": "MISTERO"},
+      {"id": 12, "name": "Pelagar", "axes": ["FORZA"], "assessment_archetype": "IMPULSO"},
+      {"id": 13, "name": "Terros", "axes": ["FORZA"], "assessment_archetype": "TRADIZIONE"},
+      {"id": 14, "name": "Pyraxis", "axes": ["MAGIA"], "assessment_archetype": "IMPULSO"},
+      {"id": 15, "name": "Aegis", "axes": ["FORZA", "PERDITA"], "assessment_archetype": "EMPATIA"},
+      {"id": 16, "name": "Silvana", "axes": ["VELOCITÀ", "PERDITA"], "assessment_archetype": "MISTERO"},
+      {"id": 17, "name": "Mortis Rex", "axes": ["PERDITA"], "assessment_archetype": "TRADIZIONE"},
+      {"id": 18, "name": "Radix Magnus", "axes": ["FORZA"], "assessment_archetype": "TRADIZIONE"},
+      {"id": 19, "name": "Geminus", "axes": ["MENTE", "MAGIA", "PERDITA"], "assessment_archetype": "MISTERO"},
+      {"id": 20, "name": "Oculus Ferox", "axes": ["FORZA", "MENTE"], "assessment_archetype": "METODO"},
+      {"id": 21, "name": "Morwen", "axes": ["MENTE", "MAGIA"], "assessment_archetype": "MISTERO"},
+      {"id": 22, "name": "Ventus Nobilis", "axes": ["VELOCITÀ", "PERDITA"], "assessment_archetype": "EMPATIA"}
+    ]
   }
 }

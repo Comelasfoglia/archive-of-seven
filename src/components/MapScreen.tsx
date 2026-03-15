@@ -18,18 +18,36 @@ interface MapScreenProps {
 
 const typeColor: Record<string, string> = {
   documento: 'var(--crystal-blue)',
+  documento_alterato: 'var(--crystal-blue)',
   audio: 'var(--crystal-gold)',
   oggetto: 'var(--crystal-violet)',
   testimonianza: 'var(--testimony-green)',
   diario: 'var(--diary-red)',
+  voce: 'var(--crystal-gold)',
+  indice: 'var(--crystal-blue)',
+  lettera: 'var(--crystal-violet)',
+  lista: 'var(--crystal-blue)',
+  mappa: 'var(--crystal-gold)',
+  cifrato: 'var(--crystal-violet)',
+  riflessione: 'var(--diary-red)',
+  momento: 'var(--crystal-gold)',
 };
 
 const typeGlow: Record<string, string> = {
   documento: 'node-glow-blue',
+  documento_alterato: 'node-glow-blue',
   audio: 'node-glow-gold',
   oggetto: 'node-glow-violet',
   testimonianza: 'node-glow-green',
   diario: 'node-glow-red',
+  voce: 'node-glow-gold',
+  indice: 'node-glow-blue',
+  lettera: 'node-glow-violet',
+  lista: 'node-glow-blue',
+  mappa: 'node-glow-gold',
+  cifrato: 'node-glow-violet',
+  riflessione: 'node-glow-red',
+  momento: 'node-glow-gold',
 };
 
 // "Read" rune — small checkmark-like symbol
