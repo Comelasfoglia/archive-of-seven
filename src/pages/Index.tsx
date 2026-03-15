@@ -123,6 +123,7 @@ const Index = () => {
           openedCount={openedCount}
           totalCount={totalCount}
           allMandatoryOpened={allMandatoryOpened}
+          mandatoryOpenedCount={mandatoryOpenedCount}
           onFinale={() => setShowEnding(true)}
         />
       )}
