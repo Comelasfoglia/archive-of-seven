@@ -227,19 +227,24 @@ export function MapScreen({
 
   return (
     <div className="fixed inset-0 bg-cavern flex flex-col">
-      {/* Header */}
-      <header className="flex items-center justify-between px-4 md:px-8 py-3 border-b" style={{ borderColor: 'var(--border-stone)' }}>
-        <div className="flex items-center gap-3">
-          <span className="font-cinzel text-sm" style={{ color: 'var(--text-primary)' }}>{playerName}</span>
-          <span className="font-mono-space text-xs" style={{ color: 'var(--text-dim)' }}>{playerAxis}</span>
+      {/* Header — two rows on mobile to avoid overlap with home button */}
+      <header className="border-b" style={{ borderColor: 'var(--border-stone)' }}>
+        {/* Row 1: spacing for home button + title */}
+        <div className="flex items-center justify-center px-4 md:px-8 pt-3 pb-1">
+          <span className="font-cinzel text-xs tracking-[0.3em] uppercase ml-8 md:ml-0" style={{ color: 'var(--rune-dim)' }}>ARCHIVIO</span>
         </div>
-        <span className="font-cinzel text-xs tracking-[0.3em] uppercase" style={{ color: 'var(--rune-dim)' }}>ARCHIVIO</span>
-        {/* Mandatory progress counter */}
-        {allMandatoryOpened ? (
-          <span className="font-cinzel text-lg" style={{ color: 'var(--crystal-gold)' }}>⊕</span>
-        ) : (
-          <span className="font-mono-space text-sm" style={{ color: 'var(--text-dim)' }}>{mandatoryOpenedCount} / 6</span>
-        )}
+        {/* Row 2: player info + progress */}
+        <div className="flex items-center justify-between px-4 md:px-8 pb-3">
+          <div className="flex items-center gap-3">
+            <span className="font-cinzel text-sm" style={{ color: 'var(--text-primary)' }}>{playerName}</span>
+            <span className="font-mono-space text-xs" style={{ color: 'var(--text-dim)' }}>{playerAxis}</span>
+          </div>
+          {allMandatoryOpened ? (
+            <span className="font-cinzel text-lg" style={{ color: 'var(--crystal-gold)' }}>⊕</span>
+          ) : (
+            <span className="font-mono-space text-sm" style={{ color: 'var(--text-dim)' }}>{mandatoryOpenedCount} / 6</span>
+          )}
+        </div>
       </header>
 
       {/* Map area */}
