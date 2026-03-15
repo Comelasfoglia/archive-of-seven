@@ -49,8 +49,6 @@ const typeGlow: Record<string, string> = {
   riflessione: 'node-glow-red',
   momento: 'node-glow-gold',
 };
-  diario: 'node-glow-red',
-};
 
 // "Read" rune — small checkmark-like symbol
 function ReadRune({ color }: { color: string }) {
