@@ -3,7 +3,7 @@
     "title": "Archivio — Anno 6080",
     "subtitle": "Qualcuno ha lasciato qualcosa. Non è chiaro se volesse essere trovato.",
     "archivist": "Sette",
-    "version": "0.3-content"
+    "version": "0.4-forks"
   },
   "axes": {
     "FORZA": {
@@ -321,7 +321,10 @@
             "characters": ["Tharsos", "Terros", "Radix Magnus"],
             "reveal": "Il punto con il simbolo ⊕ ad est delle Dune Profonde — lo conosci. Non dalle mappe, non dai libri. Lo conosci per via orale, tramandato nelle tradizioni di chi abita le terre antiche. Non ha un nome scritto perché le tradizioni orali non si lasciano scrivere. È un luogo che esiste solo per chi sa già che esiste. Sette lo sapeva. Qualcuno glielo aveva detto."
           }
-        ]
+        ],
+        "forkGroup": "traccia",
+        "forkExcludes": "O9",
+        "forkPrompt": "Come vuoi seguire la sua traccia?"
       },
       {
         "id": "O5",
@@ -349,7 +352,10 @@
             "characters": ["Xaroth", "Voltar", "Geminus", "Oculus Ferox"],
             "reveal": "Il pattern linguistico del testimone è recente. Non è il ricordo di qualcosa avvenuto anni fa — le costruzioni sintattiche, le esitazioni, il modo in cui riorganizza i dettagli mentre parla: questo è un ricordo di qualcosa accaduto di recente. Qualcuno ha incontrato Sette dopo la scomparsa ufficiale. Il testimone non lo sa, o sceglie di non dirlo."
           }
-        ]
+        ],
+        "forkGroup": "testimonianze",
+        "forkExcludes": "O6",
+        "forkPrompt": "Quale versione di Sette vuoi inseguire?"
       },
       {
         "id": "O6",
@@ -377,7 +383,10 @@
             "characters": ["Sentius", "Draxis", "Ventus Nobilis", "Silvana", "Voltar", "Aegis", "Geminus"],
             "reveal": "Questa versione di Sette — quella che tocca le crepe nelle pareti e dice che i cedimenti iniziano dall'interno — è la versione che si mostra a chi sta perdendo qualcosa. Il testimone B stava sgomberando un Forte distrutto. Stava facendo lavoro fisico in un luogo crollato. Sette gli ha detto quello di cui aveva bisogno: che capire come crollano le cose è già una forma di resistenza."
           }
-        ]
+        ],
+        "forkGroup": "testimonianze",
+        "forkExcludes": "O5",
+        "forkPrompt": "Quale versione di Sette vuoi inseguire?"
       },
       {
         "id": "O7",
@@ -407,7 +416,10 @@
             "reveal": "Il sistema di cifratura non è matematico. Sotto il blocco numerico c'è una struttura runica — rune arkeyane modificate in modo sottile, quasi irriconoscibile, come se qualcuno le avesse imparate da una fonte secondaria o da un frammento incompleto. Sette aveva studiato le rune. Non abbastanza da usarle — abbastanza da cifrarci qualcosa che non voleva fosse letto da chi non le conosceva già.",
             "exclusive": true
           }
-        ]
+        ],
+        "forkGroup": "sette_interiore",
+        "forkExcludes": "O8",
+        "forkPrompt": "Cosa vuoi capire di Sette?"
       },
       {
         "id": "O8",
@@ -435,7 +447,10 @@
             "characters": ["Xaroth", "Ferro Gentile", "Lux Fragilis", "Geminus", "Oculus Ferox"],
             "reveal": "L'incertezza di Sette non è filosofica — è operativa. Si chiede se quello che sta costruendo abbia senso non come domanda esistenziale, ma come verifica di sistema: il progetto è ancora funzionale? Lo scopo originale è ancora valido? La conclusione — «forse le abitudini baste» — non è rassegnazione. È un metodo. Continuare anche quando il perché non è più visibile è una scelta precisa, non una deriva."
           }
-        ]
+        ],
+        "forkGroup": "sette_interiore",
+        "forkExcludes": "O7",
+        "forkPrompt": "Cosa vuoi capire di Sette?"
       },
       {
         "id": "O9",
@@ -463,7 +478,10 @@
             "characters": ["Lunara", "Morwen", "Xaroth", "Geminus", "Pyraxis"],
             "reveal": "La data rimossa non è stata rimossa da Sette. Il solvente usato lascia una firma energetica diversa dall'inchiostro di Sette — più fredda, più recente, applicata con strumenti che Sette non avrebbe avuto. Qualcuno è entrato nell'archivio dopo Sette. Ha letto questo documento. Ha scelto di togliere solo la data — non il testo, solo la data. Ha voluto che fosse impossibile sapere quando è stato scritto. Non per distruggere: per rendere ambiguo."
           }
-        ]
+        ],
+        "forkGroup": "traccia",
+        "forkExcludes": "O4",
+        "forkPrompt": "Come vuoi seguire la sua traccia?"
       }
     ]
   },
@@ -505,5 +523,58 @@
       {"id": 21, "name": "Morwen", "axes": ["MENTE", "MAGIA"], "assessment_archetype": "MISTERO"},
       {"id": 22, "name": "Ventus Nobilis", "axes": ["VELOCITÀ", "PERDITA"], "assessment_archetype": "EMPATIA"}
     ]
+  },
+  "forks": {
+    "testimonianze": {
+      "label": "Le testimonianze",
+      "prompt": "Due persone hanno incontrato Sette dopo la scomparsa. Le loro descrizioni non coincidono. Quale vuoi seguire?",
+      "triggerAfter": "F3",
+      "options": [
+        {
+          "id": "O5",
+          "label": "Prima testimonianza",
+          "hint": "Un uomo al mercato. Qualcuno che aspettava senza sapere cosa."
+        },
+        {
+          "id": "O6",
+          "label": "Seconda testimonianza",
+          "hint": "Una donna tra le macerie del Forte. Qualcuno che ha parlato con Sette."
+        }
+      ]
+    },
+    "sette_interiore": {
+      "label": "L'interno di Sette",
+      "prompt": "Hai trovato due tracce di quello che Sette portava dentro. Quale scegli?",
+      "triggerAfter": "F6",
+      "options": [
+        {
+          "id": "O7",
+          "label": "Il documento cifrato",
+          "hint": "Qualcosa che Sette non voleva fosse letto. Nemmeno da te."
+        },
+        {
+          "id": "O8",
+          "label": "La voce diretta",
+          "hint": "L'unica volta in cui Sette ha parlato di sé."
+        }
+      ]
+    },
+    "traccia": {
+      "label": "La traccia",
+      "prompt": "Sette si muoveva. Vuoi seguire i suoi luoghi o il suo momento?",
+      "triggerAfter": "F4",
+      "options": [
+        {
+          "id": "O4",
+          "label": "La mappa annotata",
+          "hint": "I luoghi del Continente che Sette aveva cerchiato, cancellato, marcato."
+        },
+        {
+          "id": "O9",
+          "label": "Il momento prima",
+          "hint": "Una nota senza data. Scritta la notte prima di qualcosa."
+        }
+      ]
+    }
   }
 }

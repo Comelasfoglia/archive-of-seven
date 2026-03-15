@@ -25,6 +25,22 @@ export interface Fragment {
   content: FragmentContent;
   reveals: string;
   challenges?: FragmentChallenge[];
+  forkGroup?: string;
+  forkExcludes?: string;
+  forkPrompt?: string;
+}
+
+export interface ForkOption {
+  id: string;
+  label: string;
+  hint: string;
+}
+
+export interface ForkDefinition {
+  label: string;
+  prompt: string;
+  triggerAfter: string;
+  options: ForkOption[];
 }
 
 export interface CharacterLensEntry {
@@ -56,6 +72,7 @@ export interface ArchiveData {
     surface: { text: string; trigger?: string; optional_found?: string };
     deep: { text: string; trigger?: string; optional_found?: string };
   };
+  forks?: Record<string, ForkDefinition>;
   character_lens?: {
     description: string;
     characters: CharacterLensEntry[];
