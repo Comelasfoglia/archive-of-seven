@@ -10,10 +10,19 @@ interface FragmentModalProps {
 
 const typeColor: Record<string, string> = {
   documento: 'var(--crystal-blue)',
+  documento_alterato: 'var(--crystal-blue)',
   audio: 'var(--crystal-gold)',
   oggetto: 'var(--crystal-violet)',
   testimonianza: 'var(--testimony-green)',
   diario: 'var(--diary-red)',
+  voce: 'var(--crystal-gold)',
+  indice: 'var(--crystal-blue)',
+  lettera: 'var(--crystal-violet)',
+  lista: 'var(--crystal-blue)',
+  mappa: 'var(--crystal-gold)',
+  cifrato: 'var(--crystal-violet)',
+  riflessione: 'var(--diary-red)',
+  momento: 'var(--crystal-gold)',
 };
 
 const CHALLENGE_SEEN_KEY = 'archivio-6080-challenge-seen';
