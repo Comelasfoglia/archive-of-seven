@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useArchive, Fragment } from '../hooks/useArchive';
-import { CharacterSelectScreen, CharacterOption } from '../components/CharacterSelectScreen';
+import { useState, useEffect } from 'react';
+import { useArchive, Fragment, CharacterLensEntry } from '../hooks/useArchive';
+import { CharacterSelectScreen } from '../components/CharacterSelectScreen';
 import { IntroScreen } from '../components/IntroScreen';
 import { MapScreen } from '../components/MapScreen';
 import { FragmentModal } from '../components/FragmentModal';
