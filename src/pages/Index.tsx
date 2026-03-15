@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useArchive, Fragment } from '../hooks/useArchive';
-import { CharacterSelectScreen, CharacterOption } from '../components/CharacterSelectScreen';
+import { useState, useEffect } from 'react';
+import { useArchive, Fragment, CharacterLensEntry } from '../hooks/useArchive';
+import { CharacterSelectScreen } from '../components/CharacterSelectScreen';
 import { IntroScreen } from '../components/IntroScreen';
 import { MapScreen } from '../components/MapScreen';
 import { FragmentModal } from '../components/FragmentModal';
@@ -70,9 +70,19 @@ const Index = () => {
   } = useArchive();
 
   const [screen, setScreen] = useState<Screen>('character-select');
-  const [selectedCharacter, setSelectedCharacter] = useState<CharacterOption | null>(null);
+  const [selectedCharacter, setSelectedCharacter] = useState<CharacterLensEntry | null>(null);
   const [selectedFragment, setSelectedFragment] = useState<Fragment | null>(null);
   const [showEnding, setShowEnding] = useState(false);
+
+  useEffect(() => {
+    if (screen !== 'map') return;
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = '';
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [screen]);
 
   if (loading || !data) {
     return (

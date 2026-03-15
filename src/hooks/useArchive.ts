@@ -70,14 +70,14 @@ interface ArchiveState {
 
 function loadState(): ArchiveState {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = sessionStorage.getItem(STORAGE_KEY);
     if (raw) return JSON.parse(raw);
   } catch {}
   return { openedIds: [] };
 }
 
 function saveState(state: ArchiveState) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
 export function useArchive() {
@@ -135,7 +135,7 @@ export function useArchive() {
 
   const resetProgress = useCallback(() => {
     setOpenedIds([]);
-    localStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem(STORAGE_KEY);
   }, []);
 
   const characters = data?.character_lens?.characters ?? [];
