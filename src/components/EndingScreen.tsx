@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { CrystalSVG } from './CrystalSVG';
 
 interface EndingScreenProps {
-  ending: { text: string; title?: string };
+  ending: { text: string; trigger?: string; optional_found?: string };
   playerName: string;
   onRestart: () => void;
   onReturn: () => void;
