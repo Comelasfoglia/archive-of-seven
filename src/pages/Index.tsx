@@ -63,7 +63,7 @@ const Index = () => {
     data, loading, allFragments,
     isOpened, isUnlocked, openFragment,
     openedCount, totalCount,
-    allMandatoryOpened, optionalOpenedCount,
+    allMandatoryOpened, mandatoryOpenedCount, optionalOpenedCount,
   } = useArchive();
 
   const [screen, setScreen] = useState<Screen>('character-select');
@@ -123,6 +123,7 @@ const Index = () => {
           openedCount={openedCount}
           totalCount={totalCount}
           allMandatoryOpened={allMandatoryOpened}
+          mandatoryOpenedCount={mandatoryOpenedCount}
           onFinale={() => setShowEnding(true)}
         />
       )}

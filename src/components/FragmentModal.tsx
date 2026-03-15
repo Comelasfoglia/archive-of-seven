@@ -16,6 +16,8 @@ const typeColor: Record<string, string> = {
   diario: 'var(--diary-red)',
 };
 
+const CHALLENGE_SEEN_KEY = 'archivio-6080-challenge-seen';
+
 function ChallengeRuneSymbol({ className = '' }: { className?: string }) {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" className={className} style={{ color: 'var(--crystal-gold)' }}>
@@ -28,8 +30,8 @@ function ChallengeRuneSymbol({ className = '' }: { className?: string }) {
 export function FragmentModal({ fragment, playerName, onClose }: FragmentModalProps) {
   const [showReveals, setShowReveals] = useState(false);
   const [visibleChallengeCount, setVisibleChallengeCount] = useState(0);
+  const [showRecognition, setShowRecognition] = useState(false);
 
-  // Compute active challenges
   const activeChallenges: FragmentChallenge[] = playerName && fragment.challenges
     ? fragment.challenges.filter(c => c.characters.includes(playerName))
     : [];
@@ -44,8 +46,21 @@ export function FragmentModal({ fragment, playerName, onClose }: FragmentModalPr
     if (!showReveals || activeChallenges.length === 0) return;
 
     const timers: ReturnType<typeof setTimeout>[] = [];
+
+    // Check if this is the first challenge ever seen
+    const alreadySeen = sessionStorage.getItem(CHALLENGE_SEEN_KEY);
+
     activeChallenges.forEach((_, i) => {
-      timers.push(setTimeout(() => setVisibleChallengeCount(i + 1), 7000 + i * 3000));
+      timers.push(setTimeout(() => {
+        setVisibleChallengeCount(i + 1);
+
+        // First challenge ever: show recognition line once
+        if (i === 0 && !alreadySeen) {
+          sessionStorage.setItem(CHALLENGE_SEEN_KEY, 'true');
+          setShowRecognition(true);
+          timers.push(setTimeout(() => setShowRecognition(false), 4000));
+        }
+      }, 7000 + i * 3000));
     });
     return () => timers.forEach(clearTimeout);
   }, [showReveals, activeChallenges.length]);
@@ -144,6 +159,18 @@ export function FragmentModal({ fragment, playerName, onClose }: FragmentModalPr
             <RuneSymbol className="mt-1 flex-shrink-0" />
             <p className="font-crimson italic text-sm" style={{ color: 'var(--crystal-gold)' }}>
               {fragment.reveals}
+            </p>
+          </div>
+        )}
+
+        {/* One-time recognition line */}
+        {showRecognition && playerName && (
+          <div
+            className="mt-3"
+            style={{ animation: 'challenge-fade-in 0.8s ease-out forwards' }}
+          >
+            <p className="font-crimson italic text-xs" style={{ color: 'var(--crystal-gold)', opacity: 0.7 }}>
+              {playerName} vede qualcosa in più.
             </p>
           </div>
         )}
