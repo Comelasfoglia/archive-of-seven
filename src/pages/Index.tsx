@@ -5,10 +5,10 @@ import { IntroScreen } from '../components/IntroScreen';
 import { MapScreen } from '../components/MapScreen';
 import { FragmentModal } from '../components/FragmentModal';
 import { EndingScreen } from '../components/EndingScreen';
+import { ForkModal } from '../components/ForkModal';
 
 type Screen = 'character-select' | 'intro' | 'map';
 
-// ... keep existing code (AXIS_COLORS, AXIS_PHRASES, CHARACTER_AXES, getDominantAxis)
 const AXIS_COLORS: Record<string, string> = {
   PERDITA: '#8b3a3a',
   MAGIA: 'var(--crystal-violet)',
@@ -53,6 +53,12 @@ const CHARACTER_AXES: Record<string, string> = {
 function getDominantAxis(characterName: string): string {
   return CHARACTER_AXES[characterName] || 'MENTE';
 }
+
+const FORK_TRIGGERS: Record<string, string> = {
+  'F3': 'testimonianze',
+  'F6': 'sette_interiore',
+  'F4': 'traccia',
+};
 
 function HomeButton({ onConfirm }: { onConfirm: () => void }) {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -133,7 +139,7 @@ function HomeButton({ onConfirm }: { onConfirm: () => void }) {
 const Index = () => {
   const {
     data, loading, allFragments, characters,
-    isOpened, isUnlocked, openFragment,
+    isOpened, isUnlocked, isExcluded, openFragment, excludeFragment,
     openedCount, totalCount,
     allMandatoryOpened, mandatoryOpenedCount, optionalOpenedCount,
     resetProgress,
@@ -143,6 +149,7 @@ const Index = () => {
   const [selectedCharacter, setSelectedCharacter] = useState<CharacterLensEntry | null>(null);
   const [selectedFragment, setSelectedFragment] = useState<Fragment | null>(null);
   const [showEnding, setShowEnding] = useState(false);
+  const [activeFork, setActiveFork] = useState<string | null>(null);
 
   useEffect(() => {
     if (screen !== 'map') return;
@@ -159,6 +166,7 @@ const Index = () => {
     setSelectedCharacter(null);
     setSelectedFragment(null);
     setShowEnding(false);
+    setActiveFork(null);
     setScreen('character-select');
   };
 
@@ -177,7 +185,40 @@ const Index = () => {
     setSelectedFragment(f);
   };
 
-  const ending = optionalOpenedCount >= 6 ? data.endings.deep : data.endings.surface;
+  const handleCloseFragment = () => {
+    const f = selectedFragment;
+    setSelectedFragment(null);
+    if (!f) return;
+
+    // Check if this fragment triggers a fork
+    const forkGroup = data?.forks && FORK_TRIGGERS[f.id]
+      ? FORK_TRIGGERS[f.id]
+      : null;
+
+    if (forkGroup && data?.forks?.[forkGroup]) {
+      const fork = data.forks[forkGroup];
+      const alreadyResolved = fork.options.some(
+        opt => isExcluded(opt.id) || isOpened(opt.id)
+      );
+      if (!alreadyResolved) {
+        setActiveFork(forkGroup);
+      }
+    }
+  };
+
+  const handleForkChoice = (chosenId: string, excludedId: string) => {
+    excludeFragment(excludedId);
+    setActiveFork(null);
+  };
+
+  // Deep ending: resolved at least 2 forks AND found at least 4 optionals
+  const hasDeepEnding =
+    optionalOpenedCount >= 4 &&
+    ['testimonianze', 'sette_interiore', 'traccia'].filter(group =>
+      data?.forks?.[group]?.options.some(opt => isOpened(opt.id))
+    ).length >= 2;
+
+  const ending = hasDeepEnding ? data.endings.deep : data.endings.surface;
 
   const dominantAxis = selectedCharacter ? getDominantAxis(selectedCharacter.name) : 'MENTE';
   const crystalColor = AXIS_COLORS[dominantAxis] || AXIS_COLORS.MENTE;
@@ -212,6 +253,7 @@ const Index = () => {
           fragments={allFragments}
           isUnlocked={isUnlocked}
           isOpened={isOpened}
+          isExcluded={isExcluded}
           onSelect={handleSelectFragment}
           playerName={selectedCharacter?.name ?? 'Archivista'}
           playerAxis={selectedCharacter?.assessment_archetype ?? ''}
@@ -227,7 +269,14 @@ const Index = () => {
         <FragmentModal
           fragment={selectedFragment}
           playerName={selectedCharacter?.name ?? null}
-          onClose={() => setSelectedFragment(null)}
+          onClose={handleCloseFragment}
+        />
+      )}
+
+      {activeFork && data?.forks?.[activeFork] && (
+        <ForkModal
+          forkData={data.forks[activeFork]}
+          onChoose={handleForkChoice}
         />
       )}
 

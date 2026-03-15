@@ -83,14 +83,21 @@ const STORAGE_KEY = 'archivio-6080-state';
 
 interface ArchiveState {
   openedIds: string[];
+  excludedIds: string[];
 }
 
 function loadState(): ArchiveState {
   try {
     const raw = sessionStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return {
+        openedIds: parsed.openedIds || [],
+        excludedIds: parsed.excludedIds || [],
+      };
+    }
   } catch {}
-  return { openedIds: [] };
+  return { openedIds: [], excludedIds: [] };
 }
 
 function saveState(state: ArchiveState) {
@@ -99,7 +106,9 @@ function saveState(state: ArchiveState) {
 
 export function useArchive() {
   const [data, setData] = useState<ArchiveData | null>(null);
-  const [openedIds, setOpenedIds] = useState<string[]>(loadState().openedIds);
+  const initialState = loadState();
+  const [openedIds, setOpenedIds] = useState<string[]>(initialState.openedIds);
+  const [excludedIds, setExcludedIds] = useState<string[]>(initialState.excludedIds);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -112,8 +121,8 @@ export function useArchive() {
   }, []);
 
   useEffect(() => {
-    saveState({ openedIds });
-  }, [openedIds]);
+    saveState({ openedIds, excludedIds });
+  }, [openedIds, excludedIds]);
 
   const allFragments = data
     ? [...data.fragments.mandatory, ...data.fragments.optional]
@@ -124,18 +133,34 @@ export function useArchive() {
 
   const isOpened = useCallback((id: string) => openedIds.includes(id), [openedIds]);
 
+  const isExcluded = useCallback(
+    (id: string) => excludedIds.includes(id),
+    [excludedIds]
+  );
+
   const isUnlocked = useCallback(
     (fragment: Fragment) => {
+      if (excludedIds.includes(fragment.id)) return false;
       if (!fragment.locked) return true;
       if (!fragment.unlocksFrom) return true;
       return openedIds.includes(fragment.unlocksFrom);
     },
-    [openedIds]
+    [openedIds, excludedIds]
   );
 
   const openFragment = useCallback(
     (id: string) => {
       setOpenedIds(prev => {
+        if (prev.includes(id)) return prev;
+        return [...prev, id];
+      });
+    },
+    []
+  );
+
+  const excludeFragment = useCallback(
+    (id: string) => {
+      setExcludedIds(prev => {
         if (prev.includes(id)) return prev;
         return [...prev, id];
       });
@@ -152,6 +177,7 @@ export function useArchive() {
 
   const resetProgress = useCallback(() => {
     setOpenedIds([]);
+    setExcludedIds([]);
     sessionStorage.removeItem(STORAGE_KEY);
   }, []);
 
@@ -164,7 +190,9 @@ export function useArchive() {
     characters,
     isOpened,
     isUnlocked,
+    isExcluded,
     openFragment,
+    excludeFragment,
     openedCount,
     totalCount,
     allMandatoryOpened,
