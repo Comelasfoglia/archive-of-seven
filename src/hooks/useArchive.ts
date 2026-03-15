@@ -131,6 +131,7 @@ export function useArchive() {
     openedCount,
     totalCount,
     allMandatoryOpened,
+    mandatoryOpenedCount,
     optionalOpenedCount,
     resetProgress,
   };
