@@ -33,18 +33,19 @@ const CHARACTER_AXES: Record<string, string> = {
   'Ventus Nobilis': 'PERDITA',
   'Silvana': 'PERDITA',
   'Aegis': 'PERDITA',
+  'Geminus': 'PERDITA',
+  'Voltar': 'PERDITA',
   // MAGIA wins (not already in PERDITA)
   'Xaroth': 'MAGIA',
   'Lunara': 'MAGIA',
   'Pyraxis': 'MAGIA',
   'Morwen': 'MAGIA',
-  // PERDITA > MAGIA for Geminus (has both)
-  'Geminus': 'PERDITA',
-  // MENTE wins (Voltar has PERDITA too → PERDITA wins)
-  'Voltar': 'PERDITA',
+  // MENTE
   'Ferro Gentile': 'MENTE',
   'Lux Fragilis': 'MENTE',
   'Oculus Ferox': 'MENTE',
+  'Nocturne': 'MENTE',
+  'Mortis Rex': 'MENTE',
   // FORZA
   'Kragath': 'FORZA',
   'Tharsos': 'FORZA',
