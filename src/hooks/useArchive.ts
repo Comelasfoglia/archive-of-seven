@@ -135,7 +135,7 @@ export function useArchive() {
 
   const resetProgress = useCallback(() => {
     setOpenedIds([]);
-    localStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem(STORAGE_KEY);
   }, []);
 
   const characters = data?.character_lens?.characters ?? [];

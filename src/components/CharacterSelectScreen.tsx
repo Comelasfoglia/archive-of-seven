@@ -7,7 +7,7 @@ interface CharacterSelectScreenProps {
 }
 
 export function CharacterSelectScreen({ characters, onConfirm }: CharacterSelectScreenProps) {
-  const [selected, setSelected] = useState<CharacterOption | null>(null);
+  const [selected, setSelected] = useState<CharacterLensEntry | null>(null);
 
   return (
     <div className="fixed inset-0 flex flex-col items-center z-50 px-4 py-8 overflow-y-auto" style={{ background: 'var(--bg-deep)' }}>
