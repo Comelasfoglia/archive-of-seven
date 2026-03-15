@@ -63,7 +63,7 @@ function getDominantAxis(characterName: string): string {
 
 const Index = () => {
   const {
-    data, loading, allFragments,
+    data, loading, allFragments, characters,
     isOpened, isUnlocked, openFragment,
     openedCount, totalCount,
     allMandatoryOpened, mandatoryOpenedCount, optionalOpenedCount,
