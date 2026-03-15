@@ -6,6 +6,7 @@ interface MapScreenProps {
   fragments: Fragment[];
   isUnlocked: (f: Fragment) => boolean;
   isOpened: (id: string) => boolean;
+  isExcluded: (id: string) => boolean;
   onSelect: (f: Fragment) => void;
   playerName: string;
   playerAxis: string;
@@ -50,7 +51,6 @@ const typeGlow: Record<string, string> = {
   momento: 'node-glow-gold',
 };
 
-// "Read" rune — small checkmark-like symbol
 function ReadRune({ color }: { color: string }) {
   return (
     <svg width="10" height="10" viewBox="0 0 10 10">
@@ -61,13 +61,13 @@ function ReadRune({ color }: { color: string }) {
 }
 
 function HexNode({
-  x, y, color, label, title, unlocked, opened, glowClass, icon, onClick,
+  x, y, color, label, title, unlocked, opened, excluded, glowClass, icon, onClick,
   prerequisiteTitle, prerequisiteIcon, prerequisiteColor,
   prerequisitePos, justUnlocked,
   onHover,
 }: {
   x: number; y: number; color: string; label: string; title: string;
-  unlocked: boolean; opened: boolean; glowClass: string; icon: string;
+  unlocked: boolean; opened: boolean; excluded: boolean; glowClass: string; icon: string;
   onClick: () => void;
   prerequisiteTitle?: string;
   prerequisiteIcon?: string;
@@ -81,7 +81,70 @@ function HexNode({
   const handleMouseEnter = () => { setHovered(true); onHover?.(true); };
   const handleMouseLeave = () => { setHovered(false); onHover?.(false); };
 
-  // Opened nodes: slightly smaller, reduced glow
+  // Excluded nodes: very dim, grayscale, not clickable
+  if (excluded) {
+    return (
+      <g
+        transform={`translate(${x}, ${y})`}
+        className="cursor-not-allowed transition-all duration-700"
+        style={{ transform: `translate(${x}px, ${y}px)`, opacity: 0.2, filter: 'grayscale(1) sepia(0.3)' }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <polygon
+          points="-24,-14 0,-28 24,-14 24,14 0,28 -24,14"
+          fill="rgba(10,10,18,0.6)"
+          stroke="var(--rune-dim)"
+          strokeWidth="1"
+          strokeDasharray="4 3"
+        />
+        <foreignObject x={-12} y={-12} width={24} height={24}>
+          <div className="flex items-center justify-center w-full h-full">
+            <FragmentIcon icon={icon} size={18} color="var(--rune-dim)" />
+          </div>
+        </foreignObject>
+        {/* Small X mark */}
+        <text
+          x={16} y={22}
+          textAnchor="middle"
+          fill="var(--text-dim)"
+          fontSize="8"
+          fontFamily="'Space Mono', monospace"
+          fillOpacity="0.5"
+        >
+          ✕
+        </text>
+        <text y={38} textAnchor="middle" fill="var(--rune-dim)" fontSize="9" fontFamily="'Space Mono', monospace">
+          {label}
+        </text>
+        <text y={50} textAnchor="middle" fill="var(--rune-dim)" fontSize="10" fontFamily="'Cinzel', serif">
+          {title.length > 16 ? title.slice(0, 15) + '…' : title}
+        </text>
+        {/* Excluded tooltip */}
+        {hovered && (
+          <g>
+            <rect
+              x={-90} y={-52} width={180} height={22} rx={2}
+              fill="rgba(10,10,18,0.92)"
+              stroke="var(--border-stone)"
+              strokeWidth="0.5"
+            />
+            <text
+              y={-37}
+              textAnchor="middle"
+              fill="var(--text-dim)"
+              fontSize="9"
+              fontFamily="'Crimson Pro', serif"
+              fontStyle="italic"
+            >
+              Hai scelto un'altra strada.
+            </text>
+          </g>
+        )}
+      </g>
+    );
+  }
+
   const openedScale = opened && unlocked ? 'scale(0.9)' : 'scale(1)';
   const openedGlowClass = opened && unlocked ? '' : glowClass;
   const openedGlowReduced = opened && unlocked ? 'node-glow-read' : '';
@@ -96,7 +159,6 @@ function HexNode({
       style={{ transform: `translate(${x}px, ${y}px)` }}
     >
       <g style={{ transform: openedScale, transformOrigin: '0 0', transition: 'transform 0.5s ease' }}>
-        {/* Hexagon shape */}
         <polygon
           points="-24,-14 0,-28 24,-14 24,14 0,28 -24,14"
           fill={unlocked ? (opened ? 'rgba(22,22,37,0.8)' : 'rgba(22,22,37,0.95)') : 'rgba(10,10,18,0.6)'}
@@ -104,19 +166,16 @@ function HexNode({
           strokeWidth={unlocked ? 1.5 : 1}
           strokeDasharray={unlocked ? 'none' : '4 3'}
         />
-        {/* Icon inside */}
         <foreignObject x={-12} y={-12} width={24} height={24}>
           <div className="flex items-center justify-center w-full h-full">
             <FragmentIcon icon={icon} size={18} color={unlocked ? color : 'var(--rune-dim)'} />
           </div>
         </foreignObject>
-        {/* Read rune (opened nodes) */}
         {opened && unlocked && (
           <foreignObject x={12} y={12} width={14} height={14}>
             <ReadRune color={color} />
           </foreignObject>
         )}
-        {/* Small prerequisite icon on locked nodes */}
         {!unlocked && prerequisiteIcon && prerequisiteColor && (
           <foreignObject x={14} y={14} width={14} height={14}>
             <div className="flex items-center justify-center w-full h-full" style={{ opacity: 0.6 }}>
@@ -125,57 +184,25 @@ function HexNode({
           </foreignObject>
         )}
       </g>
-      {/* Labels below */}
-      <text
-        y={38}
-        textAnchor="middle"
-        fill={unlocked ? 'var(--text-dim)' : 'var(--rune-dim)'}
-        fontSize="9"
-        fontFamily="'Space Mono', monospace"
-      >
+      <text y={38} textAnchor="middle" fill={unlocked ? 'var(--text-dim)' : 'var(--rune-dim)'} fontSize="9" fontFamily="'Space Mono', monospace">
         {label}
       </text>
-      <text
-        y={50}
-        textAnchor="middle"
-        fill={unlocked ? 'var(--text-primary)' : 'var(--rune-dim)'}
-        fontSize="10"
-        fontFamily="'Cinzel', serif"
-      >
+      <text y={50} textAnchor="middle" fill={unlocked ? 'var(--text-primary)' : 'var(--rune-dim)'} fontSize="10" fontFamily="'Cinzel', serif">
         {title.length > 16 ? title.slice(0, 15) + '…' : title}
       </text>
-
-      {/* Locked tooltip on hover */}
       {!unlocked && hovered && prerequisiteTitle && (
         <g>
-          <rect
-            x={-90} y={-52} width={180} height={22} rx={2}
-            fill="rgba(10,10,18,0.92)"
-            stroke="var(--border-stone)"
-            strokeWidth="0.5"
-          />
-          <text
-            y={-37}
-            textAnchor="middle"
-            fill="var(--text-dim)"
-            fontSize="9"
-            fontFamily="'Crimson Pro', serif"
-            fontStyle="italic"
-          >
+          <rect x={-90} y={-52} width={180} height={22} rx={2} fill="rgba(10,10,18,0.92)" stroke="var(--border-stone)" strokeWidth="0.5" />
+          <text y={-37} textAnchor="middle" fill="var(--text-dim)" fontSize="9" fontFamily="'Crimson Pro', serif" fontStyle="italic">
             {`Leggi prima: ${prerequisiteTitle}`}
           </text>
         </g>
       )}
-
-      {/* Animated dashed line to prerequisite on hover */}
       {!unlocked && hovered && prerequisitePos && (
         <line
           x1={0} y1={0}
           x2={prerequisitePos.x - x} y2={prerequisitePos.y - y}
-          stroke="var(--text-dim)"
-          strokeWidth="1"
-          strokeDasharray="4 4"
-          strokeOpacity="0.5"
+          stroke="var(--text-dim)" strokeWidth="1" strokeDasharray="4 4" strokeOpacity="0.5"
           className="animate-dash"
         />
       )}
@@ -184,20 +211,18 @@ function HexNode({
 }
 
 export function MapScreen({
-  fragments, isUnlocked, isOpened, onSelect,
+  fragments, isUnlocked, isOpened, isExcluded, onSelect,
   playerName, playerAxis, openedCount, totalCount,
   allMandatoryOpened, onFinale, mandatoryOpenedCount,
 }: MapScreenProps) {
   const [justUnlockedIds, setJustUnlockedIds] = useState<Set<string>>(new Set());
   const prevOpenedRef = useRef<Set<string>>(new Set());
 
-  // Track newly unlocked nodes when a fragment is read
   useEffect(() => {
     const currentOpened = new Set(fragments.filter(f => isOpened(f.id)).map(f => f.id));
     const newlyOpened = [...currentOpened].filter(id => !prevOpenedRef.current.has(id));
 
     if (newlyOpened.length > 0) {
-      // Find children of newly opened fragments
       const newlyUnlocked = new Set<string>();
       for (const f of fragments) {
         if (f.unlocksFrom && newlyOpened.includes(f.unlocksFrom) && !currentOpened.has(f.id)) {
@@ -213,27 +238,23 @@ export function MapScreen({
     prevOpenedRef.current = currentOpened;
   }, [fragments, isOpened]);
 
-  // Build connections
+  // Build connections — skip excluded nodes
   const connections: { from: Fragment; to: Fragment }[] = [];
   for (const f of fragments) {
-    if (f.unlocksFrom) {
+    if (f.unlocksFrom && !isExcluded(f.id)) {
       const parent = fragments.find(p => p.id === f.unlocksFrom);
       if (parent) connections.push({ from: parent, to: f });
     }
   }
 
-  // Build lookup for prerequisite info
   const fragmentById = Object.fromEntries(fragments.map(f => [f.id, f]));
 
   return (
     <div className="fixed inset-0 bg-cavern flex flex-col">
-      {/* Header — two rows on mobile to avoid overlap with home button */}
       <header className="border-b" style={{ borderColor: 'var(--border-stone)' }}>
-        {/* Row 1: spacing for home button + title */}
         <div className="flex items-center justify-center px-4 md:px-8 pt-3 pb-1">
           <span className="font-cinzel text-xs tracking-[0.3em] uppercase ml-8 md:ml-0" style={{ color: 'var(--rune-dim)' }}>ARCHIVIO</span>
         </div>
-        {/* Row 2: player info + progress */}
         <div className="flex items-center justify-between px-4 md:px-8 pb-3">
           <div className="flex items-center gap-3">
             <span className="font-cinzel text-sm" style={{ color: 'var(--text-primary)' }}>{playerName}</span>
@@ -247,14 +268,12 @@ export function MapScreen({
         </div>
       </header>
 
-      {/* Map area */}
       <div className="flex-1 overflow-auto relative">
         <svg
           viewBox="0 0 1000 600"
           className="w-full min-h-[500px] md:min-h-0 md:h-full"
           preserveAspectRatio="xMidYMid meet"
         >
-          {/* Connection lines */}
           {connections.map(({ from, to }) => (
             <line
               key={`${from.id}-${to.id}`}
@@ -269,10 +288,10 @@ export function MapScreen({
             />
           ))}
 
-          {/* Fragment nodes */}
           {fragments.map(f => {
             const prereq = f.unlocksFrom ? fragmentById[f.unlocksFrom] : null;
             const prereqColor = prereq ? (typeColor[prereq.type] || 'var(--crystal-blue)') : undefined;
+            const excluded = isExcluded(f.id);
             return (
               <HexNode
                 key={f.id}
@@ -285,6 +304,7 @@ export function MapScreen({
                 icon={f.icon}
                 unlocked={isUnlocked(f)}
                 opened={isOpened(f.id)}
+                excluded={excluded}
                 onClick={() => onSelect(f)}
                 prerequisiteTitle={prereq?.title}
                 prerequisiteIcon={prereq?.icon}
@@ -295,7 +315,6 @@ export function MapScreen({
             );
           })}
 
-          {/* Finale node — octagram */}
           {allMandatoryOpened && (
             <g
               transform="translate(500, 520)"
@@ -333,7 +352,6 @@ export function MapScreen({
         </svg>
       </div>
 
-      {/* Footer */}
       <footer className="text-center py-3">
         <span className="font-crimson italic text-sm" style={{ color: 'var(--text-dim)', opacity: 0.5 }}>
           Esplora. Connetti. Ricorda.
