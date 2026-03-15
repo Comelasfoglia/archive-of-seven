@@ -25,6 +25,22 @@ export interface Fragment {
   content: FragmentContent;
   reveals: string;
   challenges?: FragmentChallenge[];
+  forkGroup?: string;
+  forkExcludes?: string;
+  forkPrompt?: string;
+}
+
+export interface ForkOption {
+  id: string;
+  label: string;
+  hint: string;
+}
+
+export interface ForkDefinition {
+  label: string;
+  prompt: string;
+  triggerAfter: string;
+  options: ForkOption[];
 }
 
 export interface CharacterLensEntry {
