@@ -63,7 +63,7 @@ const Index = () => {
     data, loading, allFragments,
     isOpened, isUnlocked, openFragment,
     openedCount, totalCount,
-    allMandatoryOpened, optionalOpenedCount,
+    allMandatoryOpened, mandatoryOpenedCount, optionalOpenedCount,
   } = useArchive();
 
   const [screen, setScreen] = useState<Screen>('character-select');
