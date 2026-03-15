@@ -72,6 +72,7 @@ export interface ArchiveData {
     surface: { text: string; trigger?: string; optional_found?: string };
     deep: { text: string; trigger?: string; optional_found?: string };
   };
+  forks?: Record<string, ForkDefinition>;
   character_lens?: {
     description: string;
     characters: CharacterLensEntry[];
