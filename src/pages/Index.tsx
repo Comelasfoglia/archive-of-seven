@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useArchive, Fragment } from '../hooks/useArchive';
-import { CharacterSelectScreen, CharacterOption, PLACEHOLDER_CHARACTERS } from '../components/CharacterSelectScreen';
+import { CharacterSelectScreen, CharacterOption } from '../components/CharacterSelectScreen';
 import { IntroScreen } from '../components/IntroScreen';
 import { MapScreen } from '../components/MapScreen';
 import { FragmentModal } from '../components/FragmentModal';
