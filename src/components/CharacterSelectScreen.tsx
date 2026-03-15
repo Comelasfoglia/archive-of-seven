@@ -30,7 +30,7 @@ export function CharacterSelectScreen({ characters, onConfirm }: CharacterSelect
       </div>
 
       {/* Character grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-w-2xl w-full mb-10">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-w-2xl w-full mb-28">
         {characters.map((char) => {
           const isSelected = selected?.name === char.name;
           return (
@@ -72,27 +72,36 @@ export function CharacterSelectScreen({ characters, onConfirm }: CharacterSelect
         })}
       </div>
 
-      {/* Confirm button */}
-      <button
-        onClick={() => selected && onConfirm(selected)}
-        disabled={!selected}
-        className="group relative font-cinzel uppercase tracking-[0.25em] text-sm md:text-base px-10 py-4 transition-all duration-500 disabled:opacity-30 disabled:cursor-not-allowed hover:enabled:scale-105"
-        style={{
-          color: 'var(--crystal-blue)',
-          border: '1px solid var(--rune-dim)',
-          background: 'transparent',
-          clipPath:
-            'polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px)',
-        }}
-      >
-        <span className="relative z-10">Entra nell'Archivio</span>
+      {/* Fixed confirm button overlay */}
+      {selected && (
         <div
-          className="absolute inset-0 opacity-0 group-hover:group-enabled:opacity-100 transition-opacity duration-500"
+          className="fixed bottom-0 left-0 right-0 z-[55] flex justify-center pb-6 pt-10 pointer-events-none"
           style={{
-            background: 'linear-gradient(135deg, rgba(79,195,247,0.1), rgba(179,157,219,0.1))',
+            background: 'linear-gradient(to top, var(--bg-deep) 40%, transparent)',
+            animation: 'challenge-fade-in 0.5s ease-out forwards',
           }}
-        />
-      </button>
+        >
+          <button
+            onClick={() => onConfirm(selected)}
+            className="pointer-events-auto group relative font-cinzel uppercase tracking-[0.25em] text-sm md:text-base px-10 py-4 transition-all duration-500 hover:scale-105"
+            style={{
+              color: 'var(--crystal-blue)',
+              border: '1px solid var(--rune-dim)',
+              background: 'var(--bg-deep)',
+              clipPath:
+                'polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px)',
+            }}
+          >
+            <span className="relative z-10">Entra nell'Archivio</span>
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              style={{
+                background: 'linear-gradient(135deg, rgba(79,195,247,0.1), rgba(179,157,219,0.1))',
+              }}
+            />
+          </button>
+        </div>
+      )}
     </div>
   );
 }
