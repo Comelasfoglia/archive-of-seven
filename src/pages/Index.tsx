@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useArchive, Fragment } from '../hooks/useArchive';
-import { CharacterSelectScreen, CharacterOption, PLACEHOLDER_CHARACTERS } from '../components/CharacterSelectScreen';
+import { CharacterSelectScreen, CharacterOption } from '../components/CharacterSelectScreen';
 import { IntroScreen } from '../components/IntroScreen';
 import { MapScreen } from '../components/MapScreen';
 import { FragmentModal } from '../components/FragmentModal';
@@ -63,7 +63,7 @@ function getDominantAxis(characterName: string): string {
 
 const Index = () => {
   const {
-    data, loading, allFragments,
+    data, loading, allFragments, characters,
     isOpened, isUnlocked, openFragment,
     openedCount, totalCount,
     allMandatoryOpened, mandatoryOpenedCount, optionalOpenedCount,
@@ -99,7 +99,7 @@ const Index = () => {
     <>
       {screen === 'character-select' && (
         <CharacterSelectScreen
-          characters={PLACEHOLDER_CHARACTERS}
+          characters={characters}
           onConfirm={(char) => {
             setSelectedCharacter(char);
             setScreen('intro');
