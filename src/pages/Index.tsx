@@ -26,33 +26,35 @@ const AXIS_PHRASES: Record<string, string> = {
 };
 
 // Character → dominant axis mapping (priority: PERDITA > MAGIA > MENTE > VELOCITÀ > FORZA)
+// Derived from character_lens.characters axes
 const CHARACTER_AXES: Record<string, string> = {
   // PERDITA wins
-  'Sentius': 'PERDITA',
-  'Draxis': 'PERDITA',
-  'Ventus Nobilis': 'PERDITA',
-  'Silvana': 'PERDITA',
-  'Aegis': 'PERDITA',
-  'Geminus': 'PERDITA',
-  'Voltar': 'PERDITA',
-  // MAGIA wins (not already in PERDITA)
-  'Xaroth': 'MAGIA',
-  'Lunara': 'MAGIA',
-  'Pyraxis': 'MAGIA',
-  'Morwen': 'MAGIA',
-  // MENTE
-  'Ferro Gentile': 'MENTE',
-  'Lux Fragilis': 'MENTE',
-  'Oculus Ferox': 'MENTE',
-  'Nocturne': 'MENTE',
-  'Mortis Rex': 'MENTE',
-  // FORZA
-  'Kragath': 'FORZA',
-  'Tharsos': 'FORZA',
-  'Umbrus': 'FORZA',
-  'Pelagar': 'FORZA',
-  'Terros': 'FORZA',
-  'Radix Magnus': 'FORZA',
+  'Sentius': 'PERDITA',       // [PERDITA]
+  'Nocturne': 'PERDITA',      // [PERDITA]
+  'Mortis Rex': 'PERDITA',    // [PERDITA]
+  'Draxis': 'PERDITA',        // [VELOCITÀ, PERDITA]
+  'Ventus Nobilis': 'PERDITA',// [VELOCITÀ, PERDITA]
+  'Silvana': 'PERDITA',       // [VELOCITÀ, PERDITA]
+  'Aegis': 'PERDITA',         // [FORZA, PERDITA]
+  'Voltar': 'PERDITA',        // [VELOCITÀ, MENTE, PERDITA]
+  'Geminus': 'PERDITA',       // [MENTE, MAGIA, PERDITA]
+  // MAGIA wins (no PERDITA)
+  'Xaroth': 'MAGIA',          // [MENTE, MAGIA]
+  'Lunara': 'MAGIA',          // [MENTE, MAGIA]
+  'Pyraxis': 'MAGIA',         // [MAGIA]
+  'Morwen': 'MAGIA',          // [MENTE, MAGIA]
+  // MENTE wins (no PERDITA, no MAGIA)
+  'Ferro Gentile': 'MENTE',   // [FORZA, MENTE]
+  'Lux Fragilis': 'MENTE',    // [VELOCITÀ, MENTE]
+  'Oculus Ferox': 'MENTE',    // [FORZA, MENTE]
+  // VELOCITÀ wins (no PERDITA, no MAGIA, no MENTE)
+  'Kragath': 'VELOCITÀ',      // [FORZA, VELOCITÀ]
+  // FORZA (only FORZA)
+  'Tharsos': 'FORZA',         // [FORZA]
+  'Umbrus': 'FORZA',          // [FORZA]
+  'Pelagar': 'FORZA',         // [FORZA]
+  'Terros': 'FORZA',          // [FORZA]
+  'Radix Magnus': 'FORZA',    // [FORZA]
 };
 
 function getDominantAxis(characterName: string): string {
