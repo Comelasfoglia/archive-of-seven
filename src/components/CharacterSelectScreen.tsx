@@ -1,15 +1,9 @@
 import { useState } from 'react';
-
-export interface CharacterOption {
-  id: number;
-  name: string;
-  axes: string[];
-  assessment_archetype: string;
-}
+import { CharacterLensEntry } from '../hooks/useArchive';
 
 interface CharacterSelectScreenProps {
-  characters: CharacterOption[];
-  onConfirm: (character: CharacterOption) => void;
+  characters: CharacterLensEntry[];
+  onConfirm: (character: CharacterLensEntry) => void;
 }
 
 export function CharacterSelectScreen({ characters, onConfirm }: CharacterSelectScreenProps) {
